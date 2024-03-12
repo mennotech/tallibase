@@ -1,0 +1,16 @@
+services:
+  app:
+    image: mennotech/tallibase
+    ports:
+      - 127.0.0.1:8080:80
+    working_dir: /app
+    volumes:
+      - ./dev/files:/opt/drupal/web/sites/default/files
+      - ./dev/config:/opt/drupal/config
+      - ./dev/db:/opt/drupal/db
+      - ./drupal-init.sh:/drupal-init.sh
+      - ./dev/settings.php:/opt/drupal/web/sites/default/settings.php
+    environment:
+      DBDRIVER: sqlite
+      DBNAME: /opt/drupal/db/drupal-site.sqlite
+      SITENAME: tallibase.local
