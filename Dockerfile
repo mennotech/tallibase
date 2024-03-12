@@ -115,7 +115,7 @@ RUN composer require 'drupal/config_split:^2.0'; \
 
 
 #Copy site configuration
-ADD prod/config/sync /opt/drupal/config/sync
+ADD prod/config /opt/drupal/config
 
 #Copy settings.php
 COPY prod/settings.php /opt/drupal/web/sites/default/settings.php
