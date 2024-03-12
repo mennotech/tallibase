@@ -1,0 +1,17 @@
+uuid: 9df2c974-f3ae-4377-b5f5-d639a5bc5a2b
+langcode: en
+status: false
+dependencies: {  }
+id: staging
+label: Staging
+description: 'Staging environment'
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/split/staging
+module: {  }
+theme: {  }
+complete_list:
+  - environment_indicator.indicator
+partial_list: {  }

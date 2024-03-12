@@ -889,3 +889,13 @@ $databases['default']['default'] = array (
   'autoload' => 'core/modules/sqlite/src/Driver/Database/sqlite/',
 );
 $settings['config_sync_directory'] = '../config/sync';
+
+#Set Config Split Environments
+if (getenv('ENV_TYPE') == 'development') {
+  $config["config_split.config_split.development"]["status"] = TRUE;
+} elseif (getenv('ENV_TYPE') == 'staging') {
+  $config["config_split.config_split.staging"]["status"] = TRUE;
+} else {
+  $config['config_split.config_split.production']['status'] = TRUE;
+}
+

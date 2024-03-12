@@ -2,7 +2,7 @@ _core:
   default_config_hash: l58O_yEXSo-SeJi19LXdzTU1tNJG3lmnIhCitRkM1tk
 langcode: en
 uuid: d6368e4e-823a-41ea-a5f1-f8e06bd9fe05
-name: tallibase
+name: localhost
 mail: admin@example.com
 slogan: ''
 page:
