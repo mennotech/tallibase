@@ -70,6 +70,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 WORKDIR /opt/drupal
 
+#Base Drupal Install copied from Offical Drupal Docker images
 RUN set -eux; \
 	export COMPOSER_HOME="$(mktemp -d)"; \
 	composer create-project --no-interaction "drupal/recommended-project:$DRUPAL_VERSION" ./; \
@@ -84,10 +85,10 @@ RUN set -eux; \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME";
 
-    
-
 
 ENV PATH=${PATH}:/opt/drupal/vendor/bin
+
+#Drupal customizations should come afte this line
 
 #Set up custom drupal init script
 COPY drupal-init.sh /drupal-init.sh
