@@ -48,6 +48,12 @@ then
         #my configuration files to say consistent across all installations
         drush cset system.site uuid d6368e4e-823a-41ea-a5f1-f8e06bd9fe05
 
+        #Add sitename to trusted_host_patterns
+        echo "\$settings['trusted_host_patterns'] = ['^$SITENAME\$',];" >> /opt/drupal/web/sites/default/settings.php
+
+        #Add servername to Apache2 config
+        echo "ServerName $SITENAME" >> /etc/apache2/apache2.conf
+
         #Edit the sync folder location to '../config/sync'
         # sed -i "s/^\(\$settings\['config_sync_directory'\] = \)'.*'/\1'..\/config\/sync'/" /opt/drupal/web/sites/default/settings.php
 
@@ -72,6 +78,10 @@ fi
 #Pull in any configuration updates
 echo "Importing Drupal Configurations from config/sync"
 drush config:import
+
+#Run cron
+echo "Running Drupal cron"
+drush cron
 
 #Start Apache2
 echo "Starting Apache"

@@ -90,6 +90,11 @@ ENV PATH=${PATH}:/opt/drupal/vendor/bin
 
 #Drupal customizations should come afte this line
 
+#Drupal php.ini optimizations
+RUN { \
+		echo 'output_buffering=4096'; \
+	} > /usr/local/etc/php/conf.d/drupal-recommended.ini
+
 #Set up custom drupal init script
 COPY drupal-init.sh /drupal-init.sh
 
