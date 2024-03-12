@@ -20,8 +20,8 @@ primary_region = 'yyz'
   DBDRIVER = "sqlite"
   DBNAME = "/opt/drupal/db/drupal-site.sqlite" 
   SITENAME = "tallibase.fly.io"
-  ENV_TYPE: production
-  ENV_HOST: fly.io
+  ENV_TYPE = "production"
+  ENV_HOST = "fly.io"
 
 
 [[vm]]
