@@ -3,7 +3,7 @@
 #Set default values if none supplied
 : "${DBDRIVER:=sqlite}"
 : "${DBNAME:=/opt/drupal/db/drupal-site.sqlite}"
-: "${SITENAME:=tallibase.fly.io}"
+: "${SITENAME:=localhost}"
 : "${ADMINUSER:=admin}"
 : "${ADMINPASSWORD:=tallibase}"
 
