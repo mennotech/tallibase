@@ -5,15 +5,15 @@ services:
       - 127.0.0.1:8080:80
     working_dir: /opt/drupal
     volumes:
+      - ./dev/db:/opt/drupal/db
       - ./dev/files:/opt/drupal/web/sites/default/files
       - ./dev/config:/opt/drupal/config
-      - ./dev/db:/opt/drupal/db
       - ./drupal-init.sh:/drupal-init.sh
       - ./dev/settings.php:/opt/drupal/web/sites/default/settings.php
     environment:
       DBDRIVER: sqlite
       DBNAME: /opt/drupal/db/drupal-site.sqlite
-      SITENAME: tallibase.dev
+      SITENAME: localhost
       ENV_TYPE: dev
       ENV_HOST: docker
 
@@ -22,9 +22,16 @@ services:
       ports:
         - 127.0.0.1:8081:80
       working_dir: /opt/drupal
+      volumes:
+        - drupal-db:/opt/drupal/db
+        - drupal-files:/opt/drupal/web/sites/default/files
       environment:
         DBDRIVER: sqlite
         DBNAME: /opt/drupal/db/drupal-site.sqlite
-        SITENAME: tallibase.staging
+        SITENAME: localhost
         ENV_TYPE: staging
         ENV_HOST: docker
+
+volumes:
+  drupal-db:
+  drupal-files:
