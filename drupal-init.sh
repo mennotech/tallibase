@@ -78,6 +78,8 @@ fi
 #Pull in any configuration updates
 echo "Importing Drupal Configurations from config/sync"
 drush config:import
+#Rebuild all the caches
+drush cr
 
 #Run cron
 echo "Running Drupal cron"
