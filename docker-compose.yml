@@ -14,7 +14,7 @@ services:
       DBDRIVER: sqlite
       DBNAME: /opt/drupal/db/drupal-site.sqlite
       SITENAME: localhost
-      ENV_TYPE: dev
+      ENV_TYPE: development
       ENV_HOST: docker
 
   staging:
