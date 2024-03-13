@@ -1,0 +1,17 @@
+uuid: a394017b-8bcf-43b1-b864-0b18dfcae1b2
+langcode: en
+status: false
+dependencies: {  }
+id: development
+label: Development
+description: ''
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/split/development
+module: {  }
+theme: {  }
+complete_list:
+  - environment_indicator.indicator
+partial_list: {  }

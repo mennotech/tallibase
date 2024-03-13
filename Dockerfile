@@ -90,11 +90,32 @@ ENV PATH=${PATH}:/opt/drupal/vendor/bin
 
 #Drupal customizations should come afte this line
 
+#Install additional Debian packages
+RUN apt update; \
+	apt install unzip; \
+	#Clean up apt cache
+	rm -rf /var/lib/apt/lists/*
+
+#Drupal php.ini optimizations
+RUN { \
+		echo 'output_buffering=4096'; \
+	} > /usr/local/etc/php/conf.d/drupal-recommended.ini
+
 #Set up custom drupal init script
 COPY drupal-init.sh /drupal-init.sh
 
+#Install contib modules
+RUN composer require 'drupal/config_split:^2.0'; \
+	composer require 'drupal/config_ignore:^3.2'; \
+	composer require 'drupal/environment_indicator:^4.0';\
+	composer require 'drupal/admin_toolbar:^3.4'; \
+	composer update; \
+	# delete composer cache
+	rm -rf "$COMPOSER_HOME";
+
+
 #Copy site configuration
-ADD prod/config/sync /opt/drupal/config/sync
+ADD prod/config /opt/drupal/config
 
 #Copy settings.php
 COPY prod/settings.php /opt/drupal/web/sites/default/settings.php
