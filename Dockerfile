@@ -110,6 +110,7 @@ RUN composer require 'drupal/config_split:^2.0.1'; \
 	composer require 'drupal/environment_indicator:^4.0.19';\
 	composer require 'drupal/admin_toolbar:^3.4'; \
 	composer require 'drupal/inline_entity_form:^3.0@RC'; \
+	composer require 'drupal/content_as_config:^1.0'; \
 	composer update; \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME";
