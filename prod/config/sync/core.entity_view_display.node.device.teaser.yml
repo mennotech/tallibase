@@ -37,3 +37,4 @@ hidden:
   field_devicestaus: true
   field_manufacturer: true
   field_serialnumber: true
+  langcode: true

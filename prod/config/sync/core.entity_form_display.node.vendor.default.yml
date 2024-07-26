@@ -35,6 +35,13 @@ content:
     region: second
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: first
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     weight: 4

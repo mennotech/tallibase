@@ -35,3 +35,4 @@ hidden:
   field_jobtitle: true
   field_lastname: true
   field_startdate: true
+  langcode: true
