@@ -81,6 +81,9 @@ drush config:import
 #Rebuild all the caches
 drush cr
 
+#Import all content_as_config
+drush content_as_config:import-all --style=safe
+
 #Run cron
 echo "Running Drupal cron"
 drush cron
