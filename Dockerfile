@@ -62,8 +62,8 @@ RUN { \
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/
 
-# 2024-03-06: https://www.drupal.org/project/drupal/releases/10.2.4
-ENV DRUPAL_VERSION 10.2.4
+# 2024-07-25: https://www.drupal.org/project/drupal/releases/10.3.1
+ENV DRUPAL_VERSION 10.3.1
 
 #Allow root composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -105,10 +105,11 @@ RUN { \
 COPY drupal-init.sh /drupal-init.sh
 
 #Install contib modules
-RUN composer require 'drupal/config_split:^2.0'; \
-	composer require 'drupal/config_ignore:^3.2'; \
-	composer require 'drupal/environment_indicator:^4.0';\
+RUN composer require 'drupal/config_split:^2.0.1'; \
+	composer require 'drupal/config_ignore:^3.3'; \
+	composer require 'drupal/environment_indicator:^4.0.19';\
 	composer require 'drupal/admin_toolbar:^3.4'; \
+	composer require 'drupal/inline_entity_form:^3.0@RC'; \
 	composer update; \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME";
