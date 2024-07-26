@@ -3,10 +3,12 @@ _core:
 module:
   admin_toolbar: 0
   block: 0
+  block_content: 0
   breakpoint: 0
   config: 0
   config_ignore: 0
   config_split: 0
+  content_as_config: 0
   datetime: 0
   dblog: 0
   dynamic_page_cache: 0
@@ -23,6 +25,7 @@ module:
   layout_discovery: 0
   link: 0
   locale: 0
+  menu_link_content: 0
   node: 0
   options: 0
   page_cache: 0

@@ -1,0 +1,270 @@
+e010ac3b-dd5e-49d8-aee8-bd95b6d6630d:
+  uuid: e010ac3b-dd5e-49d8-aee8-bd95b6d6630d
+  tid: '1'
+  vid: device_status
+  name: Deployed
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/1
+5b7c22a9-8793-46b0-9576-ef612942dca8:
+  uuid: 5b7c22a9-8793-46b0-9576-ef612942dca8
+  tid: '2'
+  vid: device_status
+  name: 'In Stock'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/2
+5fa9e7fd-4011-48bf-a628-fd99b91b456c:
+  uuid: 5fa9e7fd-4011-48bf-a628-fd99b91b456c
+  tid: '3'
+  vid: device_status
+  name: 'In Repair'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/3
+31c0a83f-33f7-4407-ae6b-6424bf77ccee:
+  uuid: 31c0a83f-33f7-4407-ae6b-6424bf77ccee
+  tid: '4'
+  vid: device_status
+  name: Discovered
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/4
+ab695e94-da02-412a-a5ac-b99717b978de:
+  uuid: ab695e94-da02-412a-a5ac-b99717b978de
+  tid: '5'
+  vid: device_class
+  name: Computer
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/5
+72603e43-643f-488c-96b7-47612a82c1e0:
+  uuid: 72603e43-643f-488c-96b7-47612a82c1e0
+  tid: '6'
+  vid: device_class
+  name: Desktop
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '5'
+  path: /taxonomy/term/6
+6bff03fc-562d-41f5-8a3b-12bd8f1888ac:
+  uuid: 6bff03fc-562d-41f5-8a3b-12bd8f1888ac
+  tid: '7'
+  vid: device_class
+  name: Laptop
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '5'
+  path: /taxonomy/term/7
+4171854e-4949-401f-99f0-bfece80b6d05:
+  uuid: 4171854e-4949-401f-99f0-bfece80b6d05
+  tid: '8'
+  vid: device_class
+  name: Printer
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/8
+d22a11a3-3617-4d58-9ebc-ab13b7eb3683:
+  uuid: d22a11a3-3617-4d58-9ebc-ab13b7eb3683
+  tid: '9'
+  vid: device_class
+  name: Server
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '5'
+  path: /taxonomy/term/9
+e41e9e21-5cfb-4107-9a76-28f6c6962cb2:
+  uuid: e41e9e21-5cfb-4107-9a76-28f6c6962cb2
+  tid: '10'
+  vid: device_class
+  name: 'Network Device'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/10
+b2654e7d-2e4c-47e2-a901-bcc51a537468:
+  uuid: b2654e7d-2e4c-47e2-a901-bcc51a537468
+  tid: '11'
+  vid: device_class
+  name: Switch
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '10'
+  path: /taxonomy/term/11
+668c6c29-f807-4f83-9c55-819a83876c2c:
+  uuid: 668c6c29-f807-4f83-9c55-819a83876c2c
+  tid: '12'
+  vid: device_class
+  name: Router
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '10'
+  path: /taxonomy/term/12
+7ce950fc-c1a4-4fde-8980-4af1dba85d3b:
+  uuid: 7ce950fc-c1a4-4fde-8980-4af1dba85d3b
+  tid: '13'
+  vid: device_class
+  name: 'B/W Laser'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '8'
+  path: /taxonomy/term/13
+5a9aecab-cf88-4b62-9f63-1afb8ba481a8:
+  uuid: 5a9aecab-cf88-4b62-9f63-1afb8ba481a8
+  tid: '14'
+  vid: device_class
+  name: 'Colour Laser'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '8'
+  path: /taxonomy/term/14
+ec9bd358-99f7-4d0c-bfb2-4bc9ffe753e2:
+  uuid: ec9bd358-99f7-4d0c-bfb2-4bc9ffe753e2
+  tid: '15'
+  vid: device_class
+  name: Tablet
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '5'
+  path: /taxonomy/term/15
+4dca9f37-bae8-43b4-9725-3d7e89468301:
+  uuid: 4dca9f37-bae8-43b4-9725-3d7e89468301
+  tid: '16'
+  vid: device_status
+  name: Disposed
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/16
+513d9029-4a0d-41e5-a79a-40a288c9a31f:
+  uuid: 513d9029-4a0d-41e5-a79a-40a288c9a31f
+  tid: '17'
+  vid: device_status
+  name: Ordered
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/17
+ea54e754-71da-4dbd-b32f-dd22d65cfe34:
+  uuid: ea54e754-71da-4dbd-b32f-dd22d65cfe34
+  tid: '18'
+  vid: device_model
+  name: 'Opliplex 7040'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/18
