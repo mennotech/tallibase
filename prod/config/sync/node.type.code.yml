@@ -1,0 +1,11 @@
+uuid: 671bfb13-a7c1-4dea-8002-08a85ba2688a
+langcode: en
+status: true
+dependencies: {  }
+name: Code
+type: code
+description: 'A group of instructions that are executed by a device such as software or applications'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

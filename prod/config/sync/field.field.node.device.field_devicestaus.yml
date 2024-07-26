@@ -1,0 +1,33 @@
+uuid: b957691d-292f-455a-af7f-ccda7ae2f481
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_devicestaus
+    - node.type.device
+    - taxonomy.vocabulary.device_status
+  content:
+    - 'taxonomy_term:device_status:5b7c22a9-8793-46b0-9576-ef612942dca8'
+id: node.device.field_devicestaus
+field_name: field_devicestaus
+entity_type: node
+bundle: device
+label: 'Device Staus'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: 5b7c22a9-8793-46b0-9576-ef612942dca8
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      device_status: device_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

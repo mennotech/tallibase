@@ -1,0 +1,93 @@
+uuid: c4594835-914d-4d6a-a155-8daaaa63a8f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.person.field_enddate
+    - field.field.node.person.field_firstname
+    - field.field.node.person.field_jobtitle
+    - field.field.node.person.field_lastname
+    - field.field.node.person.field_startdate
+    - node.type.person
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.person.default
+targetEntityType: node
+bundle: person
+mode: default
+content:
+  field_enddate:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_firstname:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_jobtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_lastname:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_startdate:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

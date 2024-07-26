@@ -1,0 +1,91 @@
+uuid: 259345fe-8c5f-4ee0-9c21-09ae645fd905
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.device.field_dateinstalled
+    - field.field.node.device.field_deviceclass
+    - field.field.node.device.field_devicemodel
+    - field.field.node.device.field_devicestaus
+    - field.field.node.device.field_manufacturer
+    - field.field.node.device.field_serialnumber
+    - node.type.device
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.device.default
+targetEntityType: node
+bundle: device
+mode: default
+content:
+  field_dateinstalled:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_deviceclass:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_devicemodel:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_devicestaus:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_manufacturer:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_serialnumber:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

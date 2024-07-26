@@ -1,0 +1,20 @@
+uuid: c3605ba8-6ccd-4287-9517-06ce878df7bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_devicemodel
+field_name: field_devicemodel
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

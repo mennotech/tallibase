@@ -4,19 +4,30 @@ module:
   admin_toolbar: 0
   block: 0
   breakpoint: 0
+  config: 0
   config_ignore: 0
   config_split: 0
+  datetime: 0
   dblog: 0
   dynamic_page_cache: 0
   environment_indicator: 0
   environment_indicator_ui: 0
   field: 0
+  field_layout: 0
+  field_ui: 0
+  file: 0
   filter: 0
+  image: 0
+  inline_entity_form: 0
+  layout_discovery: 0
+  link: 0
   node: 0
+  options: 0
   page_cache: 0
   path_alias: 0
   sqlite: 0
   system: 0
+  taxonomy: 0
   text: 0
   toolbar: 0
   update: 0

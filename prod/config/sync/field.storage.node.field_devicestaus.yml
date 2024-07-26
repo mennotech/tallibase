@@ -1,0 +1,20 @@
+uuid: 79f85a59-ae33-44d5-ad1a-741e9a42ebdf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_devicestaus
+field_name: field_devicestaus
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

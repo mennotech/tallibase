@@ -1,0 +1,11 @@
+uuid: 7d99bca3-3f94-4afe-a5dd-ccca696b3413
+langcode: en
+status: true
+dependencies: {  }
+name: Person
+type: person
+description: 'An employee'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

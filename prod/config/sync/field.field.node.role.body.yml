@@ -1,0 +1,24 @@
+uuid: cdb285ad-5799-4ff9-9b0e-5992eba529f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.role
+  module:
+    - text
+id: node.role.body
+field_name: body
+entity_type: node
+bundle: role
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

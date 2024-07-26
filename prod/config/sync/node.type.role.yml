@@ -1,0 +1,11 @@
+uuid: 9b67f88a-f57f-4202-8e2b-adab9044fe45
+langcode: en
+status: true
+dependencies: {  }
+name: Role
+type: role
+description: 'An area or responsibility related to a Person'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,19 @@
+uuid: abbe0d5a-7a7b-42b1-95f3-249946c08968
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dateinstalled
+    - node.type.device
+id: node.device.field_dateinstalled
+field_name: field_dateinstalled
+entity_type: node
+bundle: device
+label: 'Date Installed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

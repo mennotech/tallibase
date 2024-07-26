@@ -1,0 +1,11 @@
+uuid: 2cf1da8c-89b2-42dc-b579-ccf7aee85371
+langcode: en
+status: true
+dependencies: {  }
+name: Vendor
+type: vendor
+description: 'A hardware or software vendor'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

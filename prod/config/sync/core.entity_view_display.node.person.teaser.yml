@@ -1,0 +1,37 @@
+uuid: 481c98db-91d5-41bd-b23d-d9bb923930ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.person.field_enddate
+    - field.field.node.person.field_firstname
+    - field.field.node.person.field_jobtitle
+    - field.field.node.person.field_lastname
+    - field.field.node.person.field_startdate
+    - node.type.person
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.person.teaser
+targetEntityType: node
+bundle: person
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_enddate: true
+  field_firstname: true
+  field_jobtitle: true
+  field_lastname: true
+  field_startdate: true

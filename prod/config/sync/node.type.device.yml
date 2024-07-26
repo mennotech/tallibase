@@ -1,0 +1,11 @@
+uuid: bfeb4c94-c9b3-4a89-b391-077583366c69
+langcode: en
+status: true
+dependencies: {  }
+name: Device
+type: device
+description: 'A physical or logical unit that is capable of running computer instructions'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false
