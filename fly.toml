@@ -24,6 +24,10 @@ primary_region = 'yyz'
   ENV_HOST = "fly.io"
 
 
+[mount]
+source = "data"
+destination = "/opt/drupal/db"
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
