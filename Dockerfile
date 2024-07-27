@@ -101,8 +101,6 @@ RUN { \
 		echo 'output_buffering=4096'; \
 	} > /usr/local/etc/php/conf.d/drupal-recommended.ini
 
-#Set up custom drupal init script
-COPY drupal-init.sh /drupal-init.sh
 
 #Install contib modules
 RUN composer require 'drupal/config_split:^2.0.1'; \
@@ -115,6 +113,8 @@ RUN composer require 'drupal/config_split:^2.0.1'; \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME";
 
+#Set up custom drupal init script
+COPY drupal-init.sh /drupal-init.sh
 
 #Copy site configuration
 ADD prod/config /opt/drupal/config
