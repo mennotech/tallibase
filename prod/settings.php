@@ -882,7 +882,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => '/opt/drupal/db/drupal-site.sqlite',
+  'database' => '/opt/drupal/data/db/drupal-site.sqlite',
   'prefix' => '',
   'driver' => 'sqlite',
   'namespace' => 'Drupal\\sqlite\\Driver\\Database\\sqlite',

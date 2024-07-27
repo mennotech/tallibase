@@ -5,8 +5,10 @@
 
 app = 'tallibase'
 primary_region = 'yyz'
+swap_size_mb = 1024
 
 [build]
+image = "mennotech/tallibase:latest"
 
 [http_service]
   internal_port = 80
@@ -24,11 +26,16 @@ primary_region = 'yyz'
   ENV_HOST = "fly.io"
 
 
-[mount]
-source = "data"
-destination = "/opt/drupal/db"
+[mounts]
+  source = "data"
+  destination = "/opt/drupal/data"
+  initial_size = "1GB"
+  auto_extend_size_threshold = 80
+  auto_extend_size_increment = "1GB"
+  auto_extend_size_limit = "5GB"
+
 
 [[vm]]
-  memory = '1gb'
+  memory = '512mb'
   cpu_kind = 'shared'
   cpus = 1

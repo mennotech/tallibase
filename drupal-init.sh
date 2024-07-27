@@ -2,7 +2,7 @@
 
 #Set default values if none supplied
 : "${DBDRIVER:=sqlite}"
-: "${DBNAME:=/opt/drupal/db/drupal-site.sqlite}"
+: "${DBNAME:=/opt/drupal/data/db/drupal-site.sqlite}"
 : "${SITENAME:=localhost}"
 : "${ADMINUSER:=admin}"
 : "${ADMINPASSWORD:=tallibase}"
@@ -19,18 +19,22 @@ echo ADMINPASSWORD:$ADMINPASSWORD
 echo CMD:$@
 
 
+echo "Creating required folders"
 cd /opt/drupal
 mkdir -p /opt/drupal/config/sync
+mkdir -p /opt/drupal/data/db
+mkdir -p /opt/drupal/data/files
+chown -R www-data:www-data /opt/drupal/data/db
+chown www-data:www-data /opt/drupal/data/files
 
+rm -Rf /opt/drupal/web/sites/default/files
+ln -s /opt/drupal/data/files /opt/drupal/web/sites/default/files
 
 #Install site if not already installed
 if [ "$DBDRIVER" = "sqlite" ]
 then
     if [ ! -f "$DBNAME"  ]
     then
-        #Create folder for the sqlite database and change ownership
-        mkdir -p "${DBNAME%/*}"
-        chown www-data:www-data "${DBNAME%/*}"
 
         #Run the site installation
         drush site:install \
