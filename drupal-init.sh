@@ -3,6 +3,7 @@
 #Set default values if none supplied
 : "${DBDRIVER:=sqlite}"
 : "${DBNAME:=/opt/drupal/data/db/drupal-site.sqlite}"
+: "${FILES:=/opt/drupal/data/files}"
 : "${SITENAME:=localhost}"
 : "${ADMINUSER:=admin}"
 : "${ADMINPASSWORD:=tallibase}"
@@ -19,16 +20,14 @@ echo ADMINPASSWORD:$ADMINPASSWORD
 echo CMD:$@
 
 
-echo "Creating required folders"
-cd /opt/drupal
-mkdir -p /opt/drupal/config/sync
-mkdir -p /opt/drupal/data/db
-mkdir -p /opt/drupal/data/files
-chown -R www-data:www-data /opt/drupal/data/db
-chown www-data:www-data /opt/drupal/data/files
-
+#Create files folder and create link to folder
+mkdir -p $FILES && chown www-data:www-data $FILES
 rm -Rf /opt/drupal/web/sites/default/files
 ln -s /opt/drupal/data/files /opt/drupal/web/sites/default/files
+
+#Create DBNAME parent folder
+mkdir -p ${DBNAME%/*} && chown www-data:www-data ${DBNAME%/*}
+
 
 #Install site if not already installed
 if [ "$DBDRIVER" = "sqlite" ]
@@ -64,17 +63,6 @@ then
         #Remove old config folder
         # rm -Rf /opt/drupal/web/sites/default/files/config_*
 
-    fi
-else
-    #Detect if the current database name is not in the setting.php file and run site installtion
-    if ! grep -q "$DBNAME" "/opt/drupal/web/sites/default/settings.php"; then
-        drush site:install \
-            --site-name=$SITENAME \
-            --db-url=$DBDRIVER://$DBUSER:$DBPASSWORD@$DBHOST:$DBPORT/$DBNAME \
-            --account-name=$ADMINNAME \
-            --account-pass=$ADMINPASSWORD \
-            minimal \
-            install_configure_form.enable_update_status_emails=NULL
     fi
 fi
 

@@ -5,14 +5,14 @@ services:
       - 127.0.0.1:8080:80
     working_dir: /opt/drupal
     volumes:
-      - ./dev/db:/opt/drupal/db
-      - ./dev/files:/opt/drupal/web/sites/default/files
+      - ./dev/data:/opt/drupal/data
       - ./dev/config:/opt/drupal/config
       - ./drupal-init.sh:/drupal-init.sh
       - ./dev/settings.php:/opt/drupal/web/sites/default/settings.php
     environment:
       DBDRIVER: sqlite
-      DBNAME: /opt/drupal/db/drupal-site.sqlite
+      DBNAME: /opt/drupal/data/db/drupal-site.sqlite
+      FILES: /opt/drupal/data/files
       SITENAME: localhost
       ENV_TYPE: development
       ENV_HOST: docker
@@ -23,15 +23,14 @@ services:
         - 127.0.0.1:8081:80
       working_dir: /opt/drupal
       volumes:
-        - drupal-db:/opt/drupal/db
-        - drupal-files:/opt/drupal/web/sites/default/files
+        - drupal-data:/opt/drupal/data
       environment:
         DBDRIVER: sqlite
-        DBNAME: /opt/drupal/db/drupal-site.sqlite
+        DBNAME: /opt/drupal/data/db/drupal-site.sqlite
+        FILES: /opt/drupal/data/files
         SITENAME: localhost
         ENV_TYPE: staging
         ENV_HOST: docker
 
 volumes:
-  drupal-db:
-  drupal-files:
+  drupal-data:
