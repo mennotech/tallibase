@@ -1,0 +1,21 @@
+uuid: b6038566-ad1d-42b2-8222-b87034a077aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - rest_api_authentication
+    - serialization
+id: entity.node
+plugin_id: 'entity:node'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+  authentication:
+    - rest_api_authentication

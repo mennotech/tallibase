@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_deviceclass
     - node.type.device
     - taxonomy.vocabulary.device_class
+  content:
+    - 'taxonomy_term:device_class:ab695e94-da02-412a-a5ac-b99717b978de'
 id: node.device.field_deviceclass
 field_name: field_deviceclass
 entity_type: node
@@ -14,7 +16,9 @@ label: 'Device Class'
 description: ''
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: ab695e94-da02-412a-a5ac-b99717b978de
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'

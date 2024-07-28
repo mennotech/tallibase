@@ -7,7 +7,7 @@ dependencies:
     - node.type.device
     - taxonomy.vocabulary.device_status
   content:
-    - 'taxonomy_term:device_status:5b7c22a9-8793-46b0-9576-ef612942dca8'
+    - 'taxonomy_term:device_status:e010ac3b-dd5e-49d8-aee8-bd95b6d6630d'
 id: node.device.field_devicestaus
 field_name: field_devicestaus
 entity_type: node
@@ -18,7 +18,7 @@ required: true
 translatable: false
 default_value:
   -
-    target_uuid: 5b7c22a9-8793-46b0-9576-ef612942dca8
+    target_uuid: e010ac3b-dd5e-49d8-aee8-bd95b6d6630d
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'

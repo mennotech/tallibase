@@ -30,6 +30,10 @@ module:
   options: 0
   page_cache: 0
   path_alias: 0
+  rest: 0
+  rest_api_authentication: 0
+  restui: 0
+  serialization: 0
   sqlite: 0
   system: 0
   taxonomy: 0
@@ -37,6 +41,8 @@ module:
   toolbar: 0
   update: 0
   user: 0
+  views_ui: 0
+  views: 10
   minimal: 1000
 theme:
   stark: 0
