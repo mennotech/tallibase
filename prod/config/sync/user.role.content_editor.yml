@@ -1,0 +1,38 @@
+uuid: b56fd668-6056-4404-97ae-d6848d88d1cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.code
+    - node.type.device
+    - node.type.person
+    - node.type.role
+    - node.type.vendor
+  module:
+    - file
+    - node
+    - system
+    - taxonomy
+    - toolbar
+id: content_editor
+label: 'Content Editor'
+weight: 2
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'create code content'
+  - 'create device content'
+  - 'create person content'
+  - 'create role content'
+  - 'create vendor content'
+  - 'delete own files'
+  - 'edit any code content'
+  - 'edit any device content'
+  - 'edit any person content'
+  - 'edit any role content'
+  - 'edit any vendor content'
+  - 'view all revisions'
+  - 'view the administration theme'
+  - 'view vocabulary labels'
