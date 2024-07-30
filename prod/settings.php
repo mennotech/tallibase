@@ -897,5 +897,8 @@ if (getenv('ENV_TYPE') == 'development') {
   $config["config_split.config_split.staging"]["status"] = TRUE;
 } else {
   $config['config_split.config_split.production']['status'] = TRUE;
+  #Added support for reverse proxy
+  $settings['reverse_proxy'] = TRUE;
+  $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 }
 
