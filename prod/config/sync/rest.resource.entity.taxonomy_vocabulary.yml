@@ -1,0 +1,18 @@
+uuid: b1ac3d79-c134-40c5-90e7-5c6facd2caf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - rest_api_authentication
+    - serialization
+    - taxonomy
+id: entity.taxonomy_vocabulary
+plugin_id: 'entity:taxonomy_vocabulary'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - rest_api_authentication
