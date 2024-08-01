@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_devicemodel
+    - field.storage.node.field_device_model
     - node.type.device
     - node.type.device_model
-id: node.device.field_devicemodel
-field_name: field_devicemodel
+id: node.device.field_device_model
+field_name: field_device_model
 entity_type: node
 bundle: device
 label: 'Device Model'

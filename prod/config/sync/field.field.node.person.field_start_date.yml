@@ -1,16 +1,16 @@
-uuid: c9b3d3cf-97ec-4720-a255-1317227c3506
+uuid: b9a0d6c0-e69f-45a1-b3a9-11fe1ceeace1
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_enddate
+    - field.storage.node.field_start_date
     - node.type.person
-id: node.person.field_enddate
-field_name: field_enddate
+id: node.person.field_start_date
+field_name: field_start_date
 entity_type: node
 bundle: person
-label: 'End Date'
-description: 'Date the employment will terminate'
+label: 'Start Date'
+description: ''
 required: false
 translatable: false
 default_value: {  }

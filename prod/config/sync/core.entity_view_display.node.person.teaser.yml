@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.person.field_enddate
-    - field.field.node.person.field_firstname
-    - field.field.node.person.field_jobtitle
-    - field.field.node.person.field_lastname
-    - field.field.node.person.field_startdate
+    - field.field.node.person.field_end_date
+    - field.field.node.person.field_first_name
+    - field.field.node.person.field_job_title
+    - field.field.node.person.field_last_name
+    - field.field.node.person.field_start_date
     - node.type.person
   module:
     - field_layout
@@ -30,9 +30,9 @@ content:
     weight: 100
     region: content
 hidden:
-  field_enddate: true
-  field_firstname: true
-  field_jobtitle: true
-  field_lastname: true
-  field_startdate: true
+  field_end_date: true
+  field_first_name: true
+  field_job_title: true
+  field_last_name: true
+  field_start_date: true
   langcode: true

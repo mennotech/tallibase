@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_devicemodel
+    - field.storage.node.field_device_model
     - field.storage.node.field_manufacturer
-    - field.storage.node.field_serialnumber
+    - field.storage.node.field_serial_number
     - node.type.device
     - system.menu.main
   module:
@@ -75,10 +75,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_devicemodel:
-          id: field_devicemodel
-          table: node__field_devicemodel
-          field: field_devicemodel
+        field_device_model:
+          id: field_device_model
+          table: node__field_device_model
+          field: field_device_model
           relationship: none
           group_type: group
           admin_label: ''
@@ -201,10 +201,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_serialnumber:
-          id: field_serialnumber
-          table: node__field_serialnumber
-          field: field_serialnumber
+        field_serial_number:
+          id: field_serial_number
+          table: node__field_serial_number
+          field: field_serial_number
           relationship: none
           group_type: group
           admin_label: ''
@@ -375,9 +375,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_devicemodel'
+        - 'config:field.storage.node.field_device_model'
         - 'config:field.storage.node.field_manufacturer'
-        - 'config:field.storage.node.field_serialnumber'
+        - 'config:field.storage.node.field_serial_number'
   page_1:
     id: page_1
     display_title: Page
@@ -404,9 +404,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_devicemodel'
+        - 'config:field.storage.node.field_device_model'
         - 'config:field.storage.node.field_manufacturer'
-        - 'config:field.storage.node.field_serialnumber'
+        - 'config:field.storage.node.field_serial_number'
   rest_export_1:
     id: rest_export_1
     display_title: 'REST export'
@@ -439,6 +439,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_devicemodel'
+        - 'config:field.storage.node.field_device_model'
         - 'config:field.storage.node.field_manufacturer'
-        - 'config:field.storage.node.field_serialnumber'
+        - 'config:field.storage.node.field_serial_number'

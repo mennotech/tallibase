@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.device.field_dateinstalled
-    - field.field.node.device.field_deviceclass
-    - field.field.node.device.field_devicemodel
-    - field.field.node.device.field_devicestaus
+    - field.field.node.device.field_date_installed
+    - field.field.node.device.field_device_class
+    - field.field.node.device.field_device_model
+    - field.field.node.device.field_device_status
     - field.field.node.device.field_manufacturer
-    - field.field.node.device.field_serialnumber
+    - field.field.node.device.field_serial_number
     - node.type.device
   module:
     - field_layout
@@ -24,7 +24,7 @@ targetEntityType: node
 bundle: device
 mode: default
 content:
-  field_dateinstalled:
+  field_date_installed:
     type: timestamp
     label: above
     settings:
@@ -43,7 +43,7 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
-  field_deviceclass:
+  field_device_class:
     type: entity_reference_label
     label: above
     settings:
@@ -51,7 +51,7 @@ content:
     third_party_settings: {  }
     weight: 106
     region: content
-  field_devicemodel:
+  field_device_model:
     type: entity_reference_label
     label: above
     settings:
@@ -59,7 +59,7 @@ content:
     third_party_settings: {  }
     weight: 108
     region: content
-  field_devicestaus:
+  field_device_status:
     type: entity_reference_label
     label: above
     settings:
@@ -75,7 +75,7 @@ content:
     third_party_settings: {  }
     weight: 107
     region: content
-  field_serialnumber:
+  field_serial_number:
     type: string
     label: above
     settings:

@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_dateinstalled
+    - field.storage.node.field_date_installed
     - node.type.device
-id: node.device.field_dateinstalled
-field_name: field_dateinstalled
+id: node.device.field_date_installed
+field_name: field_date_installed
 entity_type: node
 bundle: device
 label: 'Date Installed'

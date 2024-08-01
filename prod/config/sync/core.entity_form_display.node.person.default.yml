@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.person.field_enddate
-    - field.field.node.person.field_firstname
-    - field.field.node.person.field_jobtitle
-    - field.field.node.person.field_lastname
-    - field.field.node.person.field_startdate
+    - field.field.node.person.field_end_date
+    - field.field.node.person.field_first_name
+    - field.field.node.person.field_job_title
+    - field.field.node.person.field_last_name
+    - field.field.node.person.field_start_date
     - node.type.person
   module:
     - field_layout
@@ -28,13 +28,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_enddate:
+  field_end_date:
     type: datetime_timestamp
     weight: 125
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_firstname:
+  field_first_name:
     type: string_textfield
     weight: 122
     region: content
@@ -42,7 +42,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_jobtitle:
+  field_job_title:
     type: string_textfield
     weight: 123
     region: content
@@ -50,7 +50,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_lastname:
+  field_last_name:
     type: string_textfield
     weight: 121
     region: content
@@ -58,7 +58,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_startdate:
+  field_start_date:
     type: datetime_timestamp
     weight: 124
     region: content

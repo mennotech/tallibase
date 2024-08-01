@@ -26,7 +26,7 @@ $script:headers = @{ Authorization = "Basic $EncodedCreds"; 'Content-Type' = "ap
 
 if ($Settings.RESTTest) {
 
-    $TestDevice = @{ 'title' = @{ 'value' = 'NB-JEN' }; 'type' = 'device'; 'field_serialnumber' = @{'value' = '1234'}} | ConvertTo-JSON
+    $TestDevice = @{ 'title' = @{ 'value' = 'NB-JEN' }; 'type' = 'device'; 'field_serial_number' = @{'value' = '1234'}} | ConvertTo-JSON
     $device = Invoke-RestMethod -Method POST -Uri "$SiteURL/node?_format=json" -Body $TestDevice -Headers $Headers
     $Devices = Invoke-RestMethod -Uri "$SiteURL/views/devices?_format=json" -Headers $headers
     $Devices | Format-Table
@@ -67,8 +67,8 @@ function Update-TallibaseDevices {
     $WebDevices = Invoke-DrupalResource -Path "views/devices"
 
     foreach ($Device in $Devices) {
-        if ($Device.SerialNumber -in $WebDevices.field_serialnumber) {
-            $WebDevice = $WebDevices | Where-Object field_serialnumber -eq $Devices.SerialNumber
+        if ($Device.SerialNumber -in $WebDevices.field_serial_number) {
+            $WebDevice = $WebDevices | Where-Object field_serial_number -eq $Devices.SerialNumber
             if (($WebDevice).count -eq 1) {
                 $result = Update-TallibaseDevice -AssetInfo $Device -UUID $WebDevice
             }
@@ -119,8 +119,8 @@ function New-TallibaseDevice {
         $TalliBaseResource = [PSCustomObject]@{
             type = "device"
             title = $AssetInfo.DeviceName
-            field_devicemodel = Get-TalliBaseFieldID -FieldName 'field_devicemodel' -Value $AssetInfo.Model
-            field_serialnumber = $AssetInfo.SerialNumber
+            field_device_model = Get-TalliBaseFieldID -FieldName 'field_device_model' -Value $AssetInfo.Model
+            field_serial_number = $AssetInfo.SerialNumber
             field_manufacturer = Get-TalliBaseFieldID -FieldName 'field_manufacturer' -Value $AssetInfo.Manufacturer
         }
         
@@ -137,7 +137,7 @@ function Get-TalliBaseFieldID {
     #TODO fix this to make it more dynamic
     Get-TallibaseFieldOptions
     switch ($FieldName) {
-        "field_devicemodel" {
+        "field_device_model" {
             if ($Value -in $script:TallibaseDeviceModels.title) {
                 return [PSCustomObject]@{
                     target_id = [string]($script:TallibaseDeviceModels | Where-Object title -eq $Value).nid

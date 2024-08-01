@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_serialnumber
+    - field.storage.node.field_serial_number
     - node.type.device
-id: node.device.field_serialnumber
-field_name: field_serialnumber
+id: node.device.field_serial_number
+field_name: field_serial_number
 entity_type: node
 bundle: device
 label: 'Serial Number'

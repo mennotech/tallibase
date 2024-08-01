@@ -4,12 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.device.field_dateinstalled
-    - field.field.node.device.field_deviceclass
-    - field.field.node.device.field_devicemodel
-    - field.field.node.device.field_devicestaus
+    - field.field.node.device.field_date_installed
+    - field.field.node.device.field_device_class
+    - field.field.node.device.field_device_model
+    - field.field.node.device.field_device_status
     - field.field.node.device.field_manufacturer
-    - field.field.node.device.field_serialnumber
+    - field.field.node.device.field_serial_number
     - node.type.device
   module:
     - field_layout
@@ -31,10 +31,10 @@ content:
     weight: 100
     region: content
 hidden:
-  field_dateinstalled: true
-  field_deviceclass: true
-  field_devicemodel: true
-  field_devicestaus: true
+  field_date_installed: true
+  field_device_class: true
+  field_device_model: true
+  field_device_status: true
   field_manufacturer: true
-  field_serialnumber: true
+  field_serial_number: true
   langcode: true

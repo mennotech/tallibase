@@ -1,14 +1,15 @@
-uuid: e31d224c-51dd-420e-8a7a-0a8d6229f417
+uuid: c3605ba8-6ccd-4287-9517-06ce878df7bc
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_startdate
-field_name: field_startdate
+id: node.field_device_model
+field_name: field_device_model
 entity_type: node
-type: timestamp
-settings: {  }
+type: entity_reference
+settings:
+  target_type: node
 module: core
 locked: false
 cardinality: 1

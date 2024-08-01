@@ -1,12 +1,12 @@
-uuid: 79f85a59-ae33-44d5-ad1a-741e9a42ebdf
+uuid: 6da9668d-0f18-4e26-9dac-38485f3f750e
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-id: node.field_devicestaus
-field_name: field_devicestaus
+id: node.field_device_class
+field_name: field_device_class
 entity_type: node
 type: entity_reference
 settings:

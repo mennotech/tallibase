@@ -1,19 +1,19 @@
-uuid: b9a0d6c0-e69f-45a1-b3a9-11fe1ceeace1
+uuid: fab9a0a8-8af4-4dd0-a0ef-04ab6ff4253f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_startdate
+    - field.storage.node.field_job_title
     - node.type.person
-id: node.person.field_startdate
-field_name: field_startdate
+id: node.person.field_job_title
+field_name: field_job_title
 entity_type: node
 bundle: person
-label: 'Start Date'
+label: 'Job Title'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: timestamp
+field_type: string

@@ -1,17 +1,14 @@
-uuid: 114f03d9-ad44-4e7f-815b-5a215e4f7e44
+uuid: c27f66b2-388b-42b8-8606-7c755a6a2b50
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_lastname
-field_name: field_lastname
+id: node.field_date_installed
+field_name: field_date_installed
 entity_type: node
-type: string
-settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
+type: timestamp
+settings: {  }
 module: core
 locked: false
 cardinality: 1

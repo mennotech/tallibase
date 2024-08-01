@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_deviceclass
+    - field.storage.node.field_device_class
     - node.type.device
     - taxonomy.vocabulary.device_class
   content:
     - 'taxonomy_term:device_class:ab695e94-da02-412a-a5ac-b99717b978de'
-id: node.device.field_deviceclass
-field_name: field_deviceclass
+id: node.device.field_device_class
+field_name: field_device_class
 entity_type: node
 bundle: device
 label: 'Device Class'

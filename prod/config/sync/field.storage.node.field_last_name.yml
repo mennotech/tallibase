@@ -1,11 +1,11 @@
-uuid: 6f2f64b5-86b8-417f-ba00-6af12ab2f02b
+uuid: 114f03d9-ad44-4e7f-815b-5a215e4f7e44
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_serialnumber
-field_name: field_serialnumber
+id: node.field_last_name
+field_name: field_last_name
 entity_type: node
 type: string
 settings:
