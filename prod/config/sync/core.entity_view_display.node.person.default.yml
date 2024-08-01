@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.person.field_end_date
-    - field.field.node.person.field_first_name
-    - field.field.node.person.field_job_title
-    - field.field.node.person.field_last_name
-    - field.field.node.person.field_start_date
+    - field.field.node.person.field_enddate
+    - field.field.node.person.field_firstname
+    - field.field.node.person.field_jobtitle
+    - field.field.node.person.field_lastname
+    - field.field.node.person.field_startdate
     - node.type.person
   module:
     - field_layout
@@ -23,7 +23,7 @@ targetEntityType: node
 bundle: person
 mode: default
 content:
-  field_end_date:
+  field_enddate:
     type: timestamp
     label: above
     settings:
@@ -42,7 +42,7 @@ content:
     third_party_settings: {  }
     weight: 105
     region: content
-  field_first_name:
+  field_firstname:
     type: string
     label: above
     settings:
@@ -50,7 +50,7 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
-  field_job_title:
+  field_jobtitle:
     type: string
     label: above
     settings:
@@ -58,7 +58,7 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
-  field_last_name:
+  field_lastname:
     type: string
     label: above
     settings:
@@ -66,7 +66,7 @@ content:
     third_party_settings: {  }
     weight: 101
     region: content
-  field_start_date:
+  field_startdate:
     type: timestamp
     label: above
     settings:

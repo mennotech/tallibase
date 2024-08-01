@@ -253,3 +253,18 @@ ec9bd358-99f7-4d0c-bfb2-4bc9ffe753e2:
     -
       target_id: '0'
   path: /taxonomy/term/17
+ea54e754-71da-4dbd-b32f-dd22d65cfe34:
+  uuid: ea54e754-71da-4dbd-b32f-dd22d65cfe34
+  tid: '18'
+  vid: device_model
+  name: 'Opliplex 7040'
+  langcode: en
+  description:
+    -
+      value: null
+      format: null
+  weight: '0'
+  parent:
+    -
+      target_id: '0'
+  path: /taxonomy/term/18

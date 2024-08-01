@@ -37,6 +37,7 @@ RUN \
 	composer require 'drupal/content_as_config:^1.0' --prefer-dist; \
 	composer require 'drupal/restui:^1.22' --prefer-dist; \
 	composer require 'drupal/rest_api_authentication:^2.0' --prefer-dist; \
+	composer require 'drupal/backup_migrate:^5.0'; \
 	composer update; \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME";

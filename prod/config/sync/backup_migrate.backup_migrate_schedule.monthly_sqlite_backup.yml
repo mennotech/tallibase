@@ -1,0 +1,13 @@
+uuid: 559bd7cf-f0e4-4d6d-a6cc-4b7afa62b772
+langcode: en
+status: true
+dependencies: {  }
+id: monthly_sqlite_backup
+label: 'Monthly SQLite Backup'
+enabled: true
+keep: 14
+period: 2419200
+cron: null
+source_id: sqlite_database
+destination_id: monthly_backup
+settings_profile_id: sqlite_database

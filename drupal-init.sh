@@ -3,7 +3,8 @@
 #Set default values if none supplied
 : "${DBDRIVER:=sqlite}"
 : "${DBNAME:=/opt/drupal/data/db/drupal-site.sqlite}"
-: "${FILES:=/opt/drupal/data/files}"
+: "${PUBLICFILES:=/opt/drupal/data/files}"
+: "${PRIVATEFILES:=/opt/drupal/data/private}"
 : "${SITENAME:=localhost}"
 : "${ADMINUSER:=admin}"
 : "${ADMINPASSWORD:=tallibase}"
@@ -21,7 +22,8 @@ echo CMD:$@
 
 
 #Create files folder and create link to folder
-mkdir -p $FILES && chown www-data:www-data $FILES
+mkdir -p $PUBLICFILES && chown www-data:www-data $PUBLICFILES
+mkdir -p $PRIVATEFILES && chown www-data:www-data $PRIVATEFILES
 rm -Rf /opt/drupal/web/sites/default/files
 ln -s /opt/drupal/data/files /opt/drupal/web/sites/default/files
 

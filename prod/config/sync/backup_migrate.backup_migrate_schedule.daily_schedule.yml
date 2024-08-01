@@ -1,0 +1,15 @@
+uuid: ccdeb67c-dfa4-46c8-95f2-fddf187cff60
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: B6mQr6j7ZcqZB14S8ytJEXCYzOQ1mcOW9-oWYbtkbJc
+id: daily_schedule
+label: 'Daily SQLite Backup'
+enabled: true
+keep: 31
+period: 86400
+cron: null
+source_id: sqlite_database
+destination_id: daily_backup
+settings_profile_id: sqlite_database

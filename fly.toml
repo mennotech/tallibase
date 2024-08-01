@@ -21,6 +21,8 @@ image = "mennotech/tallibase:latest"
 [env]
   DBDRIVER = "sqlite"
   DBNAME = "/opt/drupal/db/drupal-site.sqlite" 
+  PUBLICFILES = "/opt/drupal/data/files"
+  PRIVATEFILES = "/opt/drupal/data/private"
   SITENAME = "tallibase.fly.dev"
   ENV_TYPE = "production"
   ENV_HOST = "fly.io"

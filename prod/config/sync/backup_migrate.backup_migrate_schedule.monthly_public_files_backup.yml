@@ -1,0 +1,13 @@
+uuid: c68869bc-47ae-4262-8af3-9f0734182dd1
+langcode: en
+status: true
+dependencies: {  }
+id: monthly_public_files_backup
+label: 'Monthly Public Files Backup'
+enabled: true
+keep: 14
+period: 2419200
+cron: null
+source_id: public_files
+destination_id: monthly_backup
+settings_profile_id: public_files_settings

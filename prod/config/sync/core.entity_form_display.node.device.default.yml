@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.device.field_date_installed
-    - field.field.node.device.field_device_class
-    - field.field.node.device.field_device_model
-    - field.field.node.device.field_device_status
+    - field.field.node.device.field_dateinstalled
+    - field.field.node.device.field_deviceclass
+    - field.field.node.device.field_devicemodel
+    - field.field.node.device.field_devicestaus
     - field.field.node.device.field_manufacturer
-    - field.field.node.device.field_serial_number
+    - field.field.node.device.field_serialnumber
     - node.type.device
   module:
     - field_layout
@@ -30,19 +30,19 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_date_installed:
+  field_dateinstalled:
     type: datetime_timestamp
     weight: 122
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_device_class:
+  field_deviceclass:
     type: options_select
     weight: 126
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_device_model:
+  field_devicemodel:
     type: entity_reference_autocomplete
     weight: 128
     region: content
@@ -52,7 +52,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_device_status:
+  field_devicestaus:
     type: options_select
     weight: 123
     region: content
@@ -76,7 +76,7 @@ content:
       revision: true
       removed_reference: keep
     third_party_settings: {  }
-  field_serial_number:
+  field_serialnumber:
     type: string_textfield
     weight: 121
     region: content

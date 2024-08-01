@@ -12,7 +12,8 @@ services:
     environment:
       DBDRIVER: sqlite
       DBNAME: /opt/drupal/data/db/drupal-site.sqlite
-      FILES: /opt/drupal/data/files
+      PUBLICFILES: /opt/drupal/data/files
+      PRIVATEFILES: /opt/drupal/data/private
       SITENAME: localhost
       ENV_TYPE: development
       ENV_HOST: docker
@@ -27,7 +28,8 @@ services:
       environment:
         DBDRIVER: sqlite
         DBNAME: /opt/drupal/data/db/drupal-site.sqlite
-        FILES: /opt/drupal/data/files
+        PUBLICFILES: /opt/drupal/data/files
+        PRIVATEFILES: /opt/drupal/data/private
         SITENAME: localhost
         ENV_TYPE: staging
         ENV_HOST: docker

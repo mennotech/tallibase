@@ -1,0 +1,13 @@
+uuid: 4cd3bde5-5a77-4089-8f57-568a0806afd5
+langcode: en
+status: true
+dependencies: {  }
+id: daily_public_files_backup
+label: 'Daily Public Files Backup'
+enabled: true
+keep: 31
+period: 86400
+cron: null
+source_id: public_files
+destination_id: daily_backup
+settings_profile_id: public_files_settings

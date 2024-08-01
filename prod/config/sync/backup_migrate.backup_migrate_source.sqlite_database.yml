@@ -1,0 +1,9 @@
+uuid: 79a86331-88b0-46f0-a1f1-311bffe412d9
+langcode: en
+status: true
+dependencies: {  }
+id: sqlite_database
+label: 'SQLite Database'
+type: FileDirectory
+config:
+  directory: /opt/drupal/data/db
