@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.field.node.device.field_date_installed
     - field.field.node.device.field_device_class
-    - field.field.node.device.field_devicemodel
+    - field.field.node.device.field_device_model
     - field.field.node.device.field_device_status
     - field.field.node.device.field_manufacturer
     - field.field.node.device.field_serial_number
@@ -51,7 +51,7 @@ content:
     third_party_settings: {  }
     weight: 106
     region: content
-  field_devicemodel:
+  field_device_model:
     type: entity_reference_label
     label: above
     settings:
