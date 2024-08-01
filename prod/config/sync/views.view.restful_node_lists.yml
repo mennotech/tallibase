@@ -1,8 +1,9 @@
-uuid: d32655e6-83b6-4ec7-8bfc-9754ee18d199
+uuid: 0dd5ce15-3301-47d8-b2a3-f68e28d8d049
 langcode: en
 status: true
 dependencies:
   config:
+    - node.type.device_model
     - node.type.vendor
     - user.role.content_editor
   module:
@@ -10,8 +11,8 @@ dependencies:
     - rest
     - serialization
     - user
-id: restful_vendors
-label: 'RESTful Vendors'
+id: restful_node_lists
+label: 'RESTful Node Lists'
 module: views
 description: ''
 tag: ''
@@ -130,17 +131,6 @@ display:
           granularity: second
       arguments: {  }
       filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
         type:
           id: type
           table: node_field_data
@@ -260,7 +250,7 @@ display:
       tags: {  }
   rest_export_1:
     id: rest_export_1
-    display_title: 'REST export'
+    display_title: 'REST export vendors'
     display_plugin: rest_export
     position: 1
     display_options:
@@ -268,7 +258,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 10
+          items_per_page: 50
       style:
         type: serializer
         options:
@@ -278,8 +268,128 @@ display:
       row:
         type: data_entity
         options: {  }
+      display_description: ''
       display_extenders: {  }
       path: vendor
+      auth:
+        - rest_api_authentication
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url
+        - 'user.node_grants:view'
+        - user.roles
+      tags: {  }
+  rest_export_2:
+    id: rest_export_2
+    display_title: 'REST export device_models'
+    display_plugin: rest_export
+    position: 2
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 50
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            device_model: device_model
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Name
+            description: ''
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        filters: false
+        filter_groups: false
+      display_description: ''
+      display_extenders: {  }
+      path: device_model
       auth:
         - rest_api_authentication
     cache_metadata:

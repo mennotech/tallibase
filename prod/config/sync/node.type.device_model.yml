@@ -1,0 +1,11 @@
+uuid: 0e3042da-6eed-4440-b5b9-c9df2a0dc354
+langcode: en
+status: true
+dependencies: {  }
+name: 'Device Model'
+type: device_model
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

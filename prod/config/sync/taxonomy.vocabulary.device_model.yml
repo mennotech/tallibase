@@ -1,9 +1,0 @@
-uuid: d39c496b-4e78-434b-ad92-57c3b72a2afb
-langcode: en
-status: true
-dependencies: {  }
-name: 'Device Model'
-vid: device_model
-description: 'The device Model'
-weight: 0
-new_revision: false

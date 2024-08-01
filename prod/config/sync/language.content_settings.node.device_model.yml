@@ -1,0 +1,11 @@
+uuid: 36988d91-c130-426a-ab77-ccf4f36c94a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.device_model
+id: node.device_model
+target_entity_type_id: node
+target_bundle: device_model
+default_langcode: site_default
+language_alterable: false
