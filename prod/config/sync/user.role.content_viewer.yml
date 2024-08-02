@@ -1,0 +1,30 @@
+uuid: afe11215-0206-441f-a054-f8c2719f15d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.code
+    - node.type.device
+    - node.type.device_model
+    - node.type.person
+    - node.type.role
+    - node.type.vendor
+  module:
+    - node
+    - system
+    - toolbar
+id: content_viewer
+label: 'Content Viewer'
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access toolbar'
+  - 'view code revisions'
+  - 'view device revisions'
+  - 'view device_model revisions'
+  - 'view person revisions'
+  - 'view role revisions'
+  - 'view vendor revisions'
