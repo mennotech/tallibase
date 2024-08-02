@@ -1,0 +1,40 @@
+uuid: 22c7347f-63dd-46a6-8d47-1fd8744b5e66
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.device.field_date_installed
+    - field.field.node.device.field_device_class
+    - field.field.node.device.field_device_model
+    - field.field.node.device.field_device_status
+    - field.field.node.device.field_manufacturer
+    - field.field.node.device.field_serial_number
+    - node.type.device
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.device.teaser
+targetEntityType: node
+bundle: device
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_date_installed: true
+  field_device_class: true
+  field_device_model: true
+  field_device_status: true
+  field_manufacturer: true
+  field_serial_number: true
+  langcode: true

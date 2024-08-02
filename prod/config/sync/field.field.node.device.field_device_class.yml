@@ -1,0 +1,33 @@
+uuid: 4ddec18c-59e5-427c-b413-c433dc86a2b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_device_class
+    - node.type.device
+    - taxonomy.vocabulary.device_class
+  content:
+    - 'taxonomy_term:device_class:ab695e94-da02-412a-a5ac-b99717b978de'
+id: node.device.field_device_class
+field_name: field_device_class
+entity_type: node
+bundle: device
+label: 'Device Class'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: ab695e94-da02-412a-a5ac-b99717b978de
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      device_class: device_class
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

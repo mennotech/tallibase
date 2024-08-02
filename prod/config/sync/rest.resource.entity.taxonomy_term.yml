@@ -1,0 +1,19 @@
+uuid: d4665f3e-f183-4289-9a8f-855b68ba6353
+langcode: en
+status: true
+dependencies:
+  module:
+    - rest_api_authentication
+    - serialization
+    - taxonomy
+id: entity.taxonomy_term
+plugin_id: 'entity:taxonomy_term'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+  formats:
+    - json
+  authentication:
+    - rest_api_authentication

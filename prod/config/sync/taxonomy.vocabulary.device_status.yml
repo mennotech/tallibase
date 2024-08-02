@@ -1,0 +1,9 @@
+uuid: 13dcda76-0820-48f9-9a23-02e9b2ca9695
+langcode: en
+status: true
+dependencies: {  }
+name: 'Device Status'
+vid: device_status
+description: 'The status of a device'
+weight: 0
+new_revision: false

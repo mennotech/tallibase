@@ -882,7 +882,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => '/opt/drupal/db/drupal-site.sqlite',
+  'database' => '/opt/drupal/data/db/drupal-site.sqlite',
   'prefix' => '',
   'driver' => 'sqlite',
   'namespace' => 'Drupal\\sqlite\\Driver\\Database\\sqlite',
@@ -897,5 +897,11 @@ if (getenv('ENV_TYPE') == 'development') {
   $config["config_split.config_split.staging"]["status"] = TRUE;
 } else {
   $config['config_split.config_split.production']['status'] = TRUE;
+  #Added support for reverse proxy
+  $settings['reverse_proxy'] = TRUE;
+  $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 }
 
+
+#Set Path to private files folder (used by backup_migrate)
+$settings['file_private_path'] = getenv('PRIVATEFILES');

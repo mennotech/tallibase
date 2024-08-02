@@ -1,0 +1,36 @@
+uuid: 454dd4f2-74ab-4b70-bb0d-73484a8b98ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.code.body
+    - node.type.code
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.code.default
+targetEntityType: node
+bundle: code
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

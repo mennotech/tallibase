@@ -1,0 +1,27 @@
+uuid: 7b2bf20e-642a-43c0-bb9d-ea9f1a4e80b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.device_model
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.device_model.default
+targetEntityType: node
+bundle: device_model
+mode: default
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

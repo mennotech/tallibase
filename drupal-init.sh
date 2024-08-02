@@ -2,7 +2,9 @@
 
 #Set default values if none supplied
 : "${DBDRIVER:=sqlite}"
-: "${DBNAME:=/opt/drupal/db/drupal-site.sqlite}"
+: "${DBNAME:=/opt/drupal/data/db/drupal-site.sqlite}"
+: "${PUBLICFILES:=/opt/drupal/data/files}"
+: "${PRIVATEFILES:=/opt/drupal/data/private}"
 : "${SITENAME:=localhost}"
 : "${ADMINUSER:=admin}"
 : "${ADMINPASSWORD:=tallibase}"
@@ -19,8 +21,14 @@ echo ADMINPASSWORD:$ADMINPASSWORD
 echo CMD:$@
 
 
-cd /opt/drupal
-mkdir -p /opt/drupal/config/sync
+#Create files folder and create link to folder
+mkdir -p $PUBLICFILES && chown www-data:www-data $PUBLICFILES
+mkdir -p $PRIVATEFILES && chown www-data:www-data $PRIVATEFILES
+rm -Rf /opt/drupal/web/sites/default/files
+ln -s /opt/drupal/data/files /opt/drupal/web/sites/default/files
+
+#Create DBNAME parent folder
+mkdir -p ${DBNAME%/*} && chown www-data:www-data ${DBNAME%/*}
 
 
 #Install site if not already installed
@@ -28,9 +36,6 @@ if [ "$DBDRIVER" = "sqlite" ]
 then
     if [ ! -f "$DBNAME"  ]
     then
-        #Create folder for the sqlite database and change ownership
-        mkdir -p "${DBNAME%/*}"
-        chown www-data:www-data "${DBNAME%/*}"
 
         #Run the site installation
         drush site:install \
@@ -61,17 +66,6 @@ then
         # rm -Rf /opt/drupal/web/sites/default/files/config_*
 
     fi
-else
-    #Detect if the current database name is not in the setting.php file and run site installtion
-    if ! grep -q "$DBNAME" "/opt/drupal/web/sites/default/settings.php"; then
-        drush site:install \
-            --site-name=$SITENAME \
-            --db-url=$DBDRIVER://$DBUSER:$DBPASSWORD@$DBHOST:$DBPORT/$DBNAME \
-            --account-name=$ADMINNAME \
-            --account-pass=$ADMINPASSWORD \
-            minimal \
-            install_configure_form.enable_update_status_emails=NULL
-    fi
 fi
 
 
@@ -80,6 +74,9 @@ echo "Importing Drupal Configurations from config/sync"
 drush config:import
 #Rebuild all the caches
 drush cr
+
+#Import all content_as_config
+drush content_as_config:import-all --style=safe
 
 #Run cron
 echo "Running Drupal cron"

@@ -1,0 +1,36 @@
+uuid: 00fe7ee9-c6a9-4ae6-af6c-471b0bafde45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.role.body
+    - node.type.role
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.role.default
+targetEntityType: node
+bundle: role
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
