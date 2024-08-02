@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 name: 'Device Model'
 type: device_model
-description: null
+description: 'The name of the model device.'
 help: null
 new_revision: true
 preview_mode: 1
