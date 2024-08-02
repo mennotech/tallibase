@@ -1,0 +1,14 @@
+uuid: 96ace5ca-d52e-48ca-98ea-0155bc39e6d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_viewer
+  module:
+    - user
+id: user_add_role_action.content_viewer
+label: 'Add the Content Viewer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: content_viewer
