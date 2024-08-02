@@ -1,0 +1,14 @@
+uuid: ee348d15-b537-4760-9ab6-66afd09a3b95
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_viewer
+  module:
+    - user
+id: user_remove_role_action.content_viewer
+label: 'Remove the Content Viewer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: content_viewer
