@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.code
     - node.type.device
+    - node.type.device_model
     - node.type.person
     - node.type.role
     - node.type.vendor
@@ -24,12 +25,14 @@ permissions:
   - 'access toolbar'
   - 'create code content'
   - 'create device content'
+  - 'create device_model content'
   - 'create person content'
   - 'create role content'
   - 'create vendor content'
   - 'delete own files'
   - 'edit any code content'
   - 'edit any device content'
+  - 'edit any device_model content'
   - 'edit any person content'
   - 'edit any role content'
   - 'edit any vendor content'
