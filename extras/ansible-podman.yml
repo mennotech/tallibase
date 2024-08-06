@@ -1,0 +1,26 @@
+---
+- hosts: podman
+  tasks:
+  - name: installing podman
+    package:
+      name: "podman"
+      state: present
+  - name: Pull tallibase image
+    containers.podman.podman_image:
+      name: docker.io/mennotech/tallibase
+  - name: Run tallibase image
+    containers.podman.podman_container:
+      name: tallibase-host
+      image: tallibase
+      state: started
+      restart_policy: always
+      detach: true
+      exposed_ports:
+        - 80
+      ports:
+        - 80:80
+      env:
+        SITENAME: "192.168.100.151"
+        ENV_TYPE: "production"
+      volumes:
+        - drupal-data:/opt/drupal/data
