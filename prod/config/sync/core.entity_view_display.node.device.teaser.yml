@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.device.field_device_status
     - field.field.node.device.field_manufacturer
     - field.field.node.device.field_serial_number
+    - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
     - field_layout
@@ -37,4 +38,5 @@ hidden:
   field_device_status: true
   field_manufacturer: true
   field_serial_number: true
+  field_warranty_expiry: true
   langcode: true

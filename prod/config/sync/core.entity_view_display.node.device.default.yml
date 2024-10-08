@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.device.field_device_status
     - field.field.node.device.field_manufacturer
     - field.field.node.device.field_serial_number
+    - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
     - field_layout
@@ -82,6 +83,25 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_warranty_expiry:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 109
     region: content
   links:
     settings: {  }
