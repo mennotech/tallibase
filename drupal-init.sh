@@ -78,6 +78,10 @@ drush cr
 #Import all content_as_config
 drush content_as_config:import-all --style=safe
 
+#Install any Database Updates
+echo "Running Database Updates"
+drush updatedb -vv --yes
+
 #Run cron
 echo "Running Drupal cron"
 drush cron
