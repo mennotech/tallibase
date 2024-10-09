@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.device.field_device_status
     - field.field.node.device.field_manufacturer
     - field.field.node.device.field_serial_number
+    - field.field.node.device.field_short_description
     - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
@@ -83,6 +84,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_short_description:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 110
     region: content
   field_warranty_expiry:
     type: timestamp
