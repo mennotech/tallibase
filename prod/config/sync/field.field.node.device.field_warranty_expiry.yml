@@ -1,19 +1,21 @@
-uuid: 784496b0-763e-4849-9f8e-84a34e8867a5
+uuid: 8ee350a5-a342-4e7f-9d70-66b31658da5b
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_warranty_expiry
     - node.type.device
+  module:
+    - datetime
 id: node.device.field_warranty_expiry
 field_name: field_warranty_expiry
 entity_type: node
 bundle: device
 label: 'Warranty Expiry'
-description: 'Enter the date when warranty will or has expired for this device.'
+description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: timestamp
+field_type: datetime

@@ -1,19 +1,21 @@
-uuid: abbe0d5a-7a7b-42b1-95f3-249946c08968
+uuid: ef1f5f87-fa06-48a0-a7cf-3a6a3a69c96f
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_date_installed
     - node.type.device
+  module:
+    - datetime
 id: node.device.field_date_installed
 field_name: field_date_installed
 entity_type: node
 bundle: device
 label: 'Date Installed'
-description: ''
+description: 'Enter the date the device was installed'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: timestamp
+field_type: datetime

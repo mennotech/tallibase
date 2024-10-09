@@ -1,15 +1,17 @@
-uuid: 61d7aa22-ab63-40db-8fd1-22d9da4626eb
+uuid: 2197f7c3-c3e2-4416-b580-c0f3de882db6
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - node
 id: node.field_warranty_expiry
 field_name: field_warranty_expiry
 entity_type: node
-type: timestamp
-settings: {  }
-module: core
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true

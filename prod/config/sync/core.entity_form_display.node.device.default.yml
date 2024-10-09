@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
+    - datetime
     - field_layout
     - inline_entity_form
     - layout_discovery
@@ -33,8 +34,8 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_date_installed:
-    type: datetime_timestamp
-    weight: 122
+    type: datetime_default
+    weight: 131
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -103,8 +104,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_warranty_expiry:
-    type: datetime_timestamp
-    weight: 129
+    type: datetime_default
+    weight: 132
     region: content
     settings: {  }
     third_party_settings: {  }
