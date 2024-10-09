@@ -365,6 +365,8 @@ display:
             field_device_model: field_device_model
             field_manufacturer: field_manufacturer
             field_serial_number: field_serial_number
+            field_short_description: field_short_description
+            field_warranty_expiry: field_warranty_expiry
           default: '-1'
           info:
             title:
@@ -389,6 +391,20 @@ display:
               empty_column: false
               responsive: ''
             field_serial_number:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_short_description:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_warranty_expiry:
               sortable: true
               default_sort_order: asc
               align: ''
