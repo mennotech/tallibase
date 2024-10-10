@@ -12,3 +12,18 @@ The following types of resource records are avaiable:
 Tallibase is built to be the central repository for inventory allowing for automation and enforcement of policies.
 
 New users and devices will be automatically detected and flagged to ensure any changes to the environment are logged.
+
+
+# Docker Image
+
+To start the docker image, the following Environment Variables should be set
+
+```
+DBDRIVER: sqlite
+DBNAME: /opt/drupal/data/db/drupal-site.sqlite
+PUBLICFILES: /opt/drupal/data/files
+PRIVATEFILES: /opt/drupal/data/private
+SITENAME: localhost
+ENV_TYPE: staging
+ENV_HOST: docker
+```
