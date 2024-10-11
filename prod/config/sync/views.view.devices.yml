@@ -432,7 +432,25 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        field_device_model:
+          id: field_device_model
+          table: node__field_device_model
+          field: field_device_model
+          relationship: none
+          group_type: group
+          admin_label: 'field_device_model: Content'
+          plugin_id: standard
+          required: false
+        field_manufacturer:
+          id: field_manufacturer
+          table: node__field_manufacturer
+          field: field_manufacturer
+          relationship: none
+          group_type: group
+          admin_label: 'field_manufacturer: Content'
+          plugin_id: standard
+          required: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -837,6 +855,136 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        title_1:
+          id: title_1
+          table: node_field_data
+          field: title
+          relationship: field_device_model
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: 'Model Title'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        title_2:
+          id: title_2
+          table: node_field_data
+          field: title
+          relationship: field_manufacturer
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: 'Manufacturer Title'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       sorts:
         title:
           id: title
@@ -874,29 +1022,28 @@ display:
           plugin_id: bundle
           value:
             device: device
-        title:
-          id: title
-          table: node_field_data
-          field: title
+          group: 1
+        combine:
+          id: combine
+          table: views
+          field: combine
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: string
-          operator: contains
+          plugin_id: combine
+          operator: allwords
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: title_op
-            label: Title
+            operator_id: combine_op
+            label: Search
             description: ''
             use_operator: false
-            operator: title_op
+            operator: combine_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: title
+            identifier: combine
             required: false
             remember: false
             multiple: false
@@ -908,16 +1055,25 @@ display:
             placeholder: ''
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'Combine fields filter'
+            description: null
+            identifier: combine
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
+          fields:
+            title: title
+            field_serial_number: field_serial_number
+            field_short_description: field_short_description
+            title_1: title_1
+            title_2: title_2
         field_device_status_target_id:
           id: field_device_status_target_id
           table: node__field_device_status
