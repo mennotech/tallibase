@@ -2,25 +2,28 @@
 
 # Parse parameters
 show_help() {
-    echo "Usage: $0 --root-domain <root_domain> --site-name <site_name> --local-port <local_port>"
+    echo "Usage: $0 [create|update|delete] --site-name <site_name>"
     echo ""
-    echo "Required parameters:"
-    echo "  -d, --root-domain   Root domain (e.g., tallibase.io)"
-    echo "  -s, --site-name     Unique site name"
-    echo "  -p, --local-port    Local port to use"
-
+    echo "  create   Create a new pod and container for the site"
+    echo "  update   Update the container image and recreate the container"
+    echo "  delete   Remove the existing pod and container for the site"
     echo ""
-    echo "Optional parameters:"
-    echo "  -u --update-image   Download the latest container image"
-    echo "  -f, --root-folder   Root folder for the site data (default: /root/tallibase)"
-    echo "  -r, --rev-tag       Revision tag for the container image (default: latest)"
-    echo "  -h, --help          Show this help message and exit"
+    echo "Required:"
+    echo "  -s, --site-name         Unique site name (e.g. my-site)"
+    echo ""
+    echo "Options:"
+    echo "  -p, --local-port        Local port to use when creating new pod (default: 8080)"
+    echo "  -d, --root-domain       Root domain (default: tallibase.io)"
+    echo "  -f, --root-folder       Root folder for the site data (default: /root/tallibase)"
+    echo "  -r, --rev-tag           Revision tag for the container image (default: latest)"
+    echo "  -h, --help              Show this help message and exit"
 }
 
 # Initialize variables
-ROOT_DOMAIN=""
 SITE_NAME=""
-LOCAL_PORT=""
+ACTION=""
+ROOT_DOMAIN="tallibase.io"
+LOCAL_PORT="8080"
 REV_TAG="latest"
 ROOT_FOLDER="/root/tallibase"
 UPDATE_IMAGE=false
@@ -28,6 +31,18 @@ UPDATE_IMAGE=false
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        create)
+            ACTION="create"
+            shift
+            ;;
+        update)
+            ACTION="update"            
+            shift
+            ;;
+        delete)
+            ACTION="delete"
+            shift
+            ;;
         -d|--root-domain)
             ROOT_DOMAIN="$2"
             shift 2
@@ -43,10 +58,6 @@ while [[ $# -gt 0 ]]; do
         -r|--rev-tag)
             REV_TAG="$2"
             shift 2
-            ;;
-        -u|--update-image)
-            UPDATE_IMAGE=true            
-            shift
             ;;
         -f|--root-folder)
             ROOT_FOLDER="$2"
@@ -64,12 +75,27 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Check for required parameters
-if [[ -z "$ROOT_DOMAIN" || -z "$SITE_NAME" || -z "$LOCAL_PORT" ]]; then
-    echo "Error: Please provide all required parameters."
+#If no action is specified, print help and exit
+if [[ -z "$ACTION" ]]; then
+    echo "Error: No action specified. Please use 'create', 'update', or 'delete'."
     show_help
     exit 1
 fi
+
+# Check site name
+if [[ -z "$SITE_NAME"  ]]; then
+    echo "Error: Please provide a site name."
+    show_help
+    exit 1
+fi
+
+# If action is create, check if local port is specified
+if [[ "$ACTION" == "create" && -z "$LOCAL_PORT" ]]; then
+    echo "Error: Please provide a local port using -p or --local-port."
+    show_help
+    exit 1
+fi
+
 
 # Convert parameters to lowercase
 ROOT_DOMAIN=$(echo "$ROOT_DOMAIN" | tr '[:upper:]' '[:lower:]')
@@ -78,11 +104,10 @@ SITE_NAME=$(echo "$SITE_NAME" | tr '[:upper:]' '[:lower:]')
 POD_NAME="${ROOT_DOMAIN}-${SITE_NAME}"
 CONTAINER_NAME="${ROOT_DOMAIN}-${SITE_NAME}-web"
 FQDN="${SITE_NAME}.${ROOT_DOMAIN}" 
-echo "Pod Name: $POD_NAME"
-echo "Container Name: $CONTAINER_NAME"
-echo "Site Name: $SITE_NAME"
-echo "FQDN: $FQDN"
-echo "Local Port: $LOCAL_PORT"
+
+echo "Action: $ACTION"
+echo "Full Site Name: $FQDN"
+echo ""
 
 
 # Function to check if a port is available
@@ -144,32 +169,54 @@ kill_container() {
 }
 
 
-# Check if the requested local port is available
-check_port_available "$LOCAL_PORT"
 
-
-# Check if the pod already exists
-if podman pod exists "$POD_NAME"; then
-    if [ "$UPDATE_IMAGE" = true ]; then
-        echo "Pod '$POD_NAME' already exists. Updating container image..."
-        podman pull tallibase:$REV_TAG
-        if [ $? -ne 0 ]; then
-            echo "Failed to pull the latest image: tallibase:$REV_TAG"
-            exit 1
+switch("$ACTION") {
+    case "create":
+        # Check if the pod already exists
+        if podman pod exists "$POD_NAME"; then            
+            echo "Pod '$POD_NAME' already exists. Updating container..."            
+        else
+            # Check if the requested local port is available
+            check_port_available "$LOCAL_PORT"
+            podman pod create --name "$POD_NAME" -p $LOCAL_PORT:80
+            if [ $? -ne 0 ]; then
+                echo "Failed to create pod: $POD_NAME"
+                exit 4
+            fi            
+            create_container
         fi
-        echo "Image updated successfully. Recreating container..."
-        kill_container
-        create_container
-    else
-        echo "Pod '$POD_NAME' already exists. No update performed."
-    fi
-    
-else
-    echo "Pod '$POD_NAME' does not exist. Creating new pod..."
-    podman pod create --name "$POD_NAME" -p $LOCAL_PORT:80
-    if [ $? -ne 0 ]; then
-        echo "Failed to create pod: $POD_NAME"
-        exit 4
-    fi
-    create_container
-fi
+        break
+    case "update":
+        # Check if the pod already exists
+        if podman pod exists "$POD_NAME"; then
+            podman pull tallibase:$REV_TAG -q
+            if [ $? -ne 0 ]; then
+                echo "Failed to pull the latest image: tallibase:$REV_TAG"
+                exit 1
+            fi
+            echo "Image updated successfully. Recreating container..."
+            kill_container
+            create_container
+        else
+            echo "Pod '$POD_NAME' does not exist."
+        fi
+        break
+    case "delete":
+        # Check if the pod exists and remove it
+        if podman pod exists "$POD_NAME"; then
+            echo "Removing pod '$POD_NAME'..."
+            podman pod rm -f "$POD_NAME"
+            if [ $? -ne 0 ]; then
+                echo "Failed to remove pod: $POD_NAME"
+                exit 3
+            fi
+            echo "Pod '$POD_NAME' removed successfully."
+        else
+            echo "Pod '$POD_NAME' does not exist. Nothing to delete."
+        fi
+        exit 0
+        break
+    default:
+        echo "Invalid action specified. Use 'create', 'update', or 'delete'."
+        exit 1
+}
