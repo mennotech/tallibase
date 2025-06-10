@@ -135,14 +135,14 @@ create_container() {
             exit 2
         fi
     fi
-    podman run -dt --pod "$POD_NAME" --name "$CONTAINER_NAME" -e SITENAME="$FQDN" -v $ROOT_FOLDER/$SITE_NAME/:/opt/drupal/data tallibase:$REV_TAG
+    podman run -dt --pod "$POD_NAME" --name "$CONTAINER_NAME" -e SITENAME="$FQDN" -v "$ROOT_FOLDER/$SITE_NAME/:/opt/drupal/data" "tallibase:$REV_TAG"
+
     
     if [ $? -ne 0 ]; then
         echo "Failed to create container: $CONTAINER_NAME in pod: $POD_NAME"
         exit 6
     fi
     echo "Container '$CONTAINER_NAME' created successfully."
-    exit 0
 }
 
 # Function to stop and remove the container then recreate it
@@ -160,18 +160,20 @@ kill_container() {
     # Remove the existing container
     if podman container exists "$CONTAINER_NAME"; then
         echo "Container '$CONTAINER_NAME' exists. Removing it..."
-    fi
-    podman rm -f "$CONTAINER_NAME"
-    if [ $? -ne 0 ]; then
-        echo "Failed to remove container: $CONTAINER_NAME"
-        exit 5
+        podman rm -f "$CONTAINER_NAME"
+        if [ $? -ne 0 ]; then
+            echo "Failed to remove container: $CONTAINER_NAME"
+            exit 5
+        fi
+    else
+        echo "Container '$CONTAINER_NAME' does not exist. Nothing to remove."
     fi
 }
 
 
 
-switch("$ACTION") {
-    case "create":
+case "$ACTION" in
+    "create")
         # Check if the pod already exists
         if podman pod exists "$POD_NAME"; then            
             echo "Pod '$POD_NAME' already exists. Updating container..."            
@@ -185,8 +187,9 @@ switch("$ACTION") {
             fi            
             create_container
         fi
-        break
-    case "update":
+        exit 0
+        ;;
+    "update")
         # Check if the pod already exists
         if podman pod exists "$POD_NAME"; then
             podman pull tallibase:$REV_TAG -q
@@ -200,10 +203,15 @@ switch("$ACTION") {
         else
             echo "Pod '$POD_NAME' does not exist."
         fi
-        break
-    case "delete":
+        exit 0
+        ;;
+    "delete")
         # Check if the pod exists and remove it
         if podman pod exists "$POD_NAME"; then
+            
+            echo "Removing container '$CONTAINER_NAME'..."
+            kill_container
+            
             echo "Removing pod '$POD_NAME'..."
             podman pod rm -f "$POD_NAME"
             if [ $? -ne 0 ]; then
@@ -215,8 +223,11 @@ switch("$ACTION") {
             echo "Pod '$POD_NAME' does not exist. Nothing to delete."
         fi
         exit 0
-        break
-    default:
+        ;;    
+    *)
+        # If the action is not recognized, print help and exit
+        show_help
         echo "Invalid action specified. Use 'create', 'update', or 'delete'."
         exit 1
-}
+        ;;
+esac
