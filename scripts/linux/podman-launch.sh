@@ -101,6 +101,15 @@ check_port_available() {
 # Function create pod and container
 create_container() {
     echo "Creating container '$CONTAINER_NAME' in pod '$POD_NAME'..."    
+    # Check if the root folder exists, if not create it
+    if [ ! -d "$ROOT_FOLDER/$SITE_NAME" ]; then
+        echo "Creating root folder: $ROOT_FOLDER/$SITE_NAME"
+        mkdir -p "$ROOT_FOLDER/$SITE_NAME"
+        if [ $? -ne 0 ]; then
+            echo "Failed to create root folder: $ROOT_FOLDER/$SITE_NAME"
+            exit 2
+        fi
+    fi
     podman run -dt --pod "$POD_NAME" --name "$CONTAINER_NAME" -e SITENAME="$FQDN" -v $ROOT_FOLDER/$SITE_NAME/:/opt/drupal/data tallibase:$REV_TAG
     
     if [ $? -ne 0 ]; then
