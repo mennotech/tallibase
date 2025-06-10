@@ -135,14 +135,25 @@ create_container() {
             exit 2
         fi
     fi
-    podman run -dt --pod "$POD_NAME" --name "$CONTAINER_NAME" -e SITENAME="$FQDN" -v "$ROOT_FOLDER/$SITE_NAME/:/opt/drupal/data" "tallibase:$REV_TAG"
+    podman run -dt --pod "$POD_NAME" --name "$CONTAINER_NAME" --restart=on-failure -e SITENAME="$FQDN" -v "$ROOT_FOLDER/$SITE_NAME/:/opt/drupal/data" "tallibase:$REV_TAG"
+    podman generate systemd --new --name "$CONTAINER_NAME" > "/etc/systemd/system/$CONTAINER_NAME.service"
+    systemctl enable "$CONTAINER_NAME.service"
+    systemctl start "$CONTAINER_NAME.service"
 
-    
+    # Check if the container was created successfully
+    podman container exists "$CONTAINER_NAME"
     if [ $? -ne 0 ]; then
-        echo "Failed to create container: $CONTAINER_NAME in pod: $POD_NAME"
+        echo "Container '$CONTAINER_NAME' does not exist after creation."
         exit 6
     fi
-    echo "Container '$CONTAINER_NAME' created successfully."
+    # Check if the container is running
+    podman ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"
+    if [ $? -ne 0 ]; then
+        echo "Container '$CONTAINER_NAME' is not running after creation."
+        exit 6
+    fi
+    echo "Container '$CONTAINER_NAME' created and started successfully in pod '$POD_NAME'."
+    
 }
 
 # Function to stop and remove the container then recreate it
@@ -219,6 +230,15 @@ case "$ACTION" in
                 exit 3
             fi
             echo "Pod '$POD_NAME' removed successfully."
+
+            # Remove the systemd service file if it exists
+            echo "Removing systemd service for container '$CONTAINER_NAME'..."
+            if systemctl is-active --quiet "$CONTAINER_NAME.service"; then
+                echo "Stopping and disabling service '$CONTAINER_NAME.service'..."
+                systemctl stop "$CONTAINER_NAME.service"
+                systemctl disable "$CONTAINER_NAME.service"
+                rm -f "/etc/systemd/system/$CONTAINER_NAME.service"
+            fi
         else
             echo "Pod '$POD_NAME' does not exist. Nothing to delete."
         fi
