@@ -12,7 +12,7 @@ config:
   compressor:
     compression: gzip
   utils:
-    site_offline: true
+    site_offline: false
   metadata:
     description: 'Site is currently offline for maintenance'
   private_files_exclude:
@@ -26,3 +26,8 @@ config:
       - styles
       - 'config_*'
       - .htaccess
+  notify:
+    notify_success_enable: 0
+    notify_success_email: admin@example.com
+    notify_failure_enable: 0
+    notify_failure_email: admin@example.com
