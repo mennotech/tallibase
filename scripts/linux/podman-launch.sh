@@ -76,7 +76,7 @@ ROOT_DOMAIN=$(echo "$ROOT_DOMAIN" | tr '[:upper:]' '[:lower:]')
 SITE_NAME=$(echo "$SITE_NAME" | tr '[:upper:]' '[:lower:]')
 
 POD_NAME="${ROOT_DOMAIN}-${SITE_NAME}"
-CONTAINER_NAME="${$OOT_DOMAIN}-${SITE_NAME}-web"
+CONTAINER_NAME="${ROOT_DOMAIN}-${SITE_NAME}-web"
 FQDN="${SITE_NAME}.${ROOT_DOMAIN}" 
 echo "Pod Name: $POD_NAME"
 echo "Container Name: $CONTAINER_NAME"
