@@ -8,9 +8,11 @@ show_help() {
     echo "  -d, --root-domain   Root domain (e.g., tallibase.io)"
     echo "  -s, --site-name     Unique site name"
     echo "  -p, --local-port    Local port to use"
+
     echo ""
     echo "Optional parameters:"
     echo "  -u --update-image   Download the latest container image"
+    echo "  -f, --root-folder   Root folder for the site data (default: /root/tallibase)"
     echo "  -r, --rev-tag       Revision tag for the container image (default: latest)"
     echo "  -h, --help          Show this help message and exit"
 }
@@ -20,29 +22,35 @@ ROOT_DOMAIN=""
 SITE_NAME=""
 LOCAL_PORT=""
 REV_TAG="latest"
+ROOT_FOLDER="/root/tallibase"
+UPDATE_IMAGE=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -d|--root-domain)
             ROOT_DOMAIN="$2"
-            shift
+            shift 2
             ;;
         -s|--site-name)
             SITE_NAME="$2"
-            shift
+            shift 2
             ;;
         -p|--local-port)
             LOCAL_PORT="$2"
-            shift
+            shift 2
             ;;
         -r|--rev-tag)
             REV_TAG="$2"
-            shift
+            shift 2
             ;;
         -u|--update-image)
             UPDATE_IMAGE=true            
             shift
+            ;;
+        -f|--root-folder)
+            ROOT_FOLDER="$2"
+            shift 2
             ;;
         -h|--help)
             show_help
@@ -63,6 +71,9 @@ if [[ -z "$ROOT_DOMAIN" || -z "$SITE_NAME" || -z "$LOCAL_PORT" ]]; then
     exit 1
 fi
 
+# Convert parameters to lowercase
+ROOT_DOMAIN=$(echo "$ROOT_DOMAIN" | tr '[:upper:]' '[:lower:]')
+SITE_NAME=$(echo "$SITE_NAME" | tr '[:upper:]' '[:lower:]')
 
 POD_NAME="${$ROOT_DOMAIN}-${SITE_NAME}"
 CONTAINER_NAME="${$ROOT_DOMAIN}-${SITE_NAME}-web"
