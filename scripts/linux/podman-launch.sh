@@ -16,7 +16,11 @@ show_help() {
     echo "  -d, --root-domain       Root domain (default: tallibase.io)"
     echo "  -f, --root-folder       Root folder for the site data (default: /root/tallibase)"
     echo "  -r, --rev-tag           Revision tag for the container image (default: latest)"
+    echo "  -i, --image             Container image to use (default: docker.io/mennotech/tallibase)"
+    echo "  -l, --localhost         Use localhost as the root domain (default: false)"
     echo "  -h, --help              Show this help message and exit"
+    echo "  -D, --delete-data       Delete all data associated with the site (default: false)"
+    echo ""
 }
 
 # Initialize variables
@@ -27,6 +31,8 @@ LOCAL_PORT="8080"
 REV_TAG="latest"
 ROOT_FOLDER="/root/tallibase"
 UPDATE_IMAGE=false
+IMAGE="docker.io/mennotech/tallibase"
+DELETE_DATA=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -59,9 +65,21 @@ while [[ $# -gt 0 ]]; do
             REV_TAG="$2"
             shift 2
             ;;
+        -i|--image)
+            IMAGE="$2"
+            shift 2
+            ;;
+        -l|--localhost)
+            ROOT_DOMAIN="localhost"
+            shift
+            ;;
         -f|--root-folder)
             ROOT_FOLDER="$2"
             shift 2
+            ;;
+        -D|--delete-data)
+            DELETE_DATA=true
+            shift
             ;;
         -h|--help)
             show_help
@@ -103,7 +121,13 @@ SITE_NAME=$(echo "$SITE_NAME" | tr '[:upper:]' '[:lower:]')
 
 POD_NAME="${ROOT_DOMAIN}-${SITE_NAME}"
 CONTAINER_NAME="${ROOT_DOMAIN}-${SITE_NAME}-web"
-FQDN="${SITE_NAME}.${ROOT_DOMAIN}" 
+
+if [[ "$ROOT_DOMAIN" == "localhost" ]]; then
+    FQDN="localhost"
+else
+    FQDN="${SITE_NAME}.${ROOT_DOMAIN}" 
+fi
+
 
 echo "Action: $ACTION"
 echo "Full Site Name: $FQDN"
@@ -113,6 +137,13 @@ echo ""
 # Function to check if a port is available
 check_port_available() {
     local port=$1
+
+    # Check if nc is installed
+    if ! command -v nc &> /dev/null; then
+        echo "Error: 'nc' (netcat) command is not installed. Please install it to check port availability."
+        exit 1
+    fi
+
     if ! nc -z localhost "$port"; then
         echo "Port $port is available."
     else
@@ -136,16 +167,14 @@ create_container() {
         fi
     fi
     podman run -dt --pod "$POD_NAME" --name "$CONTAINER_NAME" --restart=on-failure -e SITENAME="$FQDN" -v "$ROOT_FOLDER/$SITE_NAME/:/opt/drupal/data" "tallibase:$REV_TAG"
-    podman generate systemd --new --name "$CONTAINER_NAME" > "/etc/systemd/system/$CONTAINER_NAME.service"
-    systemctl enable "$CONTAINER_NAME.service"
-    systemctl start "$CONTAINER_NAME.service"
 
     # Check if the container was created successfully
     podman container exists "$CONTAINER_NAME"
     if [ $? -ne 0 ]; then
         echo "Container '$CONTAINER_NAME' does not exist after creation."
         exit 6
-    fi
+    fi 
+
     # Check if the container is running
     podman ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"
     if [ $? -ne 0 ]; then
@@ -155,6 +184,35 @@ create_container() {
     echo "Container '$CONTAINER_NAME' created and started successfully in pod '$POD_NAME'."
     
 }
+
+# Function to create systemd service and start service
+create_service() {
+    podman generate systemd --new --name "$CONTAINER_NAME" > "/etc/systemd/system/$CONTAINER_NAME.service"
+    systemctl enable "$CONTAINER_NAME.service"
+    systemctl start "$CONTAINER_NAME.service"
+    
+    # Check if the systemd service was created and started successfully
+    if [ $? -ne 0 ]; then
+        echo "Failed to start systemd service for container: $CONTAINER_NAME"
+        exit 5
+    fi
+    echo "Systemd service for container '$CONTAINER_NAME' created and started successfully."
+    exit 0
+}
+
+# Function to pull the latest image
+pull_image() {
+    echo "Pulling the latest image: tallibase:$REV_TAG"
+    podman pull $IMAGE:$REV_TAG -q
+    if [ $? -ne 0 ]; then
+        echo "Failed to pull the latest image: tallibase:$REV_TAG"
+        echo "To add Docker Hub as a registry in Podman, you need to edit the /etc/containers/registries.conf file and add unqualified-search-registries = [\"docker.io\"]"
+        exit 1
+    fi
+    echo "Image pulled successfully."
+}
+
+
 
 # Function to stop and remove the container then recreate it
 kill_container() {
@@ -181,34 +239,93 @@ kill_container() {
     fi
 }
 
+# Function to delete the pod
+delete_pod() {
+    # Check if the pod exists and remove it
+    if podman pod exists "$POD_NAME"; then
+        echo "Pod '$POD_NAME' exists. Removing it..."
+        podman pod rm -f "$POD_NAME"
+        if [ $? -ne 0 ]; then
+            echo "Failed to remove pod: $POD_NAME"
+            exit 3
+        fi
+        echo "Pod '$POD_NAME' removed successfully."
+    else
+        echo "Pod '$POD_NAME' does not exist. Nothing to remove."
+    fi
+}
+
+# Function to delete data associated with the site
+delete_data() {
+    if [ "$DELETE_DATA" = true ]; then
+        echo "Deleting data associated with the site..."
+        if [ -d "$ROOT_FOLDER/$SITE_NAME" ]; then
+            rm -rf "$ROOT_FOLDER/$SITE_NAME"
+            if [ $? -ne 0 ]; then
+                echo "Failed to delete data for site: $SITE_NAME"
+                exit 7
+            fi
+            echo "Data for site '$SITE_NAME' deleted successfully."
+        else
+            echo "No data found for site '$SITE_NAME'. Nothing to delete."
+        fi
+    else
+        echo "Skipping data deletion as --delete-data is not set."
+    fi
+}
+
+# Function to delete systemd service file
+delete_service() {
+    echo "Removing systemd service for container '$CONTAINER_NAME'..."
+    if [ -f "/etc/systemd/system/$CONTAINER_NAME.service" ]; then
+        if systemctl is-active --quiet "$CONTAINER_NAME.service"; then
+            echo "Stopping and disabling service '$CONTAINER_NAME.service'..."
+            systemctl stop "$CONTAINER_NAME.service"
+            systemctl disable "$CONTAINER_NAME.service"
+        fi
+    rm -f "/etc/systemd/system/$CONTAINER_NAME.service"
+    else
+        echo "No systemd service file found for container '$CONTAINER_NAME'. Nothing to remove."
+        return 0
+    fi
+
+    echo "Systemd service for container '$CONTAINER_NAME' removed successfully."
+}
+
+# function to create the pod if it does not exist
+create_pod() {
+    # Check if the pod already exists
+    if podman pod exists "$POD_NAME"; then
+        echo "Pod '$POD_NAME' already exists."
+        return 0
+    else
+        # Check if the requested local port is available
+        check_port_available "$LOCAL_PORT"
+
+        echo "Creating pod '$POD_NAME'..."
+        podman pod create --name "$POD_NAME" -p $LOCAL_PORT:80
+        if [ $? -ne 0 ]; then
+            echo "Failed to create pod: $POD_NAME"
+            exit 4
+        fi
+        echo "Pod '$POD_NAME' created successfully."
+    fi
+}
+
 
 
 case "$ACTION" in
     "create")
-        # Check if the pod already exists
-        if podman pod exists "$POD_NAME"; then            
-            echo "Pod '$POD_NAME' already exists. Updating container..."            
-        else
-            # Check if the requested local port is available
-            check_port_available "$LOCAL_PORT"
-            podman pod create --name "$POD_NAME" -p $LOCAL_PORT:80
-            if [ $? -ne 0 ]; then
-                echo "Failed to create pod: $POD_NAME"
-                exit 4
-            fi            
-            create_container
-        fi
+        pull_image
+        create_pod
+        create_container
+        create_service
         exit 0
         ;;
     "update")
         # Check if the pod already exists
         if podman pod exists "$POD_NAME"; then
-            podman pull tallibase:$REV_TAG -q
-            if [ $? -ne 0 ]; then
-                echo "Failed to pull the latest image: tallibase:$REV_TAG"
-                exit 1
-            fi
-            echo "Image updated successfully. Recreating container..."
+            pull_image
             kill_container
             create_container
         else
@@ -217,31 +334,10 @@ case "$ACTION" in
         exit 0
         ;;
     "delete")
-        # Check if the pod exists and remove it
-        if podman pod exists "$POD_NAME"; then
-            
-            echo "Removing container '$CONTAINER_NAME'..."
-            kill_container
-            
-            echo "Removing pod '$POD_NAME'..."
-            podman pod rm -f "$POD_NAME"
-            if [ $? -ne 0 ]; then
-                echo "Failed to remove pod: $POD_NAME"
-                exit 3
-            fi
-            echo "Pod '$POD_NAME' removed successfully."
-
-            # Remove the systemd service file if it exists
-            echo "Removing systemd service for container '$CONTAINER_NAME'..."
-            if systemctl is-active --quiet "$CONTAINER_NAME.service"; then
-                echo "Stopping and disabling service '$CONTAINER_NAME.service'..."
-                systemctl stop "$CONTAINER_NAME.service"
-                systemctl disable "$CONTAINER_NAME.service"
-                rm -f "/etc/systemd/system/$CONTAINER_NAME.service"
-            fi
-        else
-            echo "Pod '$POD_NAME' does not exist. Nothing to delete."
-        fi
+        kill_container
+        delete_pod
+        delete_service
+        delete_data
         exit 0
         ;;    
     *)
