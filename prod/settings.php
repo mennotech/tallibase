@@ -902,3 +902,8 @@ if (getenv('ENV_TYPE') == 'development') {
   $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 }
 
+#Set trusted host patterns
+$settings['trusted_host_patterns'] = ['^' . preg_quote(getenv('SITENAME'), '/') . '$'];
+
+#Set Path to private files folder (used by backup_migrate)
+$settings['file_private_path'] = getenv('PRIVATEFILES');

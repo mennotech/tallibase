@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=1.0.3
+VERSION=1.0.4
 
 
 #Set default values if none supplied
@@ -30,6 +30,12 @@ if ! command -v drush >/dev/null 2>&1; then
     exit 1
 fi
 
+#Set environment variables if they are not already set
+export DBDRIVER
+export DBNAME
+export SITENAME
+export PUBLICFILES
+export PRIVATEFILES
 
 #Create public and private files directories and set ownership
 mkdir -p $PUBLICFILES
@@ -45,53 +51,6 @@ ln -s $PUBLICFILES /opt/drupal/web/sites/default/files
 #Create DBNAME parent folder and set ownership
 mkdir -p ${DBNAME%/*}
 chown -R www-data:www-data ${DBNAME%/*}
-
-
-#Check if the site is already installed
-if [ ! -f "/.initialized" ]
-then
-    echo "Running initial setup tasks..."
-    FIRST_RUN=true
-
-    #Add sitename to trusted_host_patterns
-    echo "\$settings['trusted_host_patterns'] = ['^$SITENAME\$'];\n" >> /opt/drupal/web/sites/default/settings.php
-
-    #Set private file path
-    echo "\$settings['file_private_path'] = '$PRIVATEFILES';\n" >> /opt/drupal/web/sites/default/settings.php
-
-    #Add servername to Apache2 config
-    echo "ServerName $SITENAME\n" >> /etc/apache2/apache2.conf
-
-    touch /.initialized
-    echo "Initial setup tasks completed."
-else
-    
-    #Apply private files settings
-    echo "Site already initialized, applying settings..."
-
-    #Apply private files settings
-    tmpfile=$(mktemp)
-    sed "s|^\(\$settings\['file_private_path'\] = \).*$|\1'$PRIVATEFILES';|" /opt/drupal/web/sites/default/settings.php > "$tmpfile" && \
-        cat $tmpfile > /opt/drupal/web/sites/default/settings.php
-    rm -f $tmpfile
-
-    #Apply SITENAME to trusted host patterns
-    tmpfile=$(mktemp)
-    sed "s|^\(\$settings\['trusted_host_patterns'\] = \).*$|\1['^$SITENAME\$'];|" /opt/drupal/web/sites/default/settings.php > "$tmpfile" && \
-        cat $tmpfile > /opt/drupal/web/sites/default/settings.php
-    rm -f $tmpfile    
-
-    #Update Apache2 config with servername using sed
-
-
-    echo "Settings applied successfully."
-fi
-
-#Output current host patterns
-echo "Current trusted host patterns:"
-grep "^\$settings\['trusted_host_patterns'\]" /opt/drupal/web/sites/default/settings.php
-grep "^\$settings\['file_private_path'\]" /opt/drupal/web/sites/default/settings.php
-
 
 #Install site if not already installed
 if [ "$DBDRIVER" = "sqlite" ]
@@ -130,7 +89,7 @@ echo "Configuration hash: $CONFIG_HASH"
 
 #Check if the config hash has changed
 if [ -f /opt/drupal/data/config_hash.txt ]; then
-    OLD_CONFIG_HASH=$(cat /opt/drupal/config_hash.txt)
+    OLD_CONFIG_HASH=$(cat /opt/drupal/data/config_hash.txt)
     if [ "$CONFIG_HASH" != "$OLD_CONFIG_HASH" ]; then
         echo "Configuration files have changed, importing new configurations."
         drush config:import --yes
@@ -138,6 +97,10 @@ if [ -f /opt/drupal/data/config_hash.txt ]; then
         #Import all content_as_config
         echo "Importing all content_as_config"
         drush content_as_config:import-all --style=safe --yes
+
+        #Run cron tasks
+        echo "Running cron tasks"
+        drush cron --yes
 
         #Rebuild all the caches
         echo "Rebuilding Drupal caches"
@@ -160,6 +123,9 @@ else
     echo "Running 2nd config/sync"
     drush config:import --yes
 
+    #Run cron tasks
+    echo "Running cron tasks"
+    drush cron --yes
 
     #Rebuild all the caches
     echo "Rebuilding Drupal caches"

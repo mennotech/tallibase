@@ -1,7 +1,7 @@
 FROM drupal:10.3.1-apache
 
-#Drupal customizations should come afte this line
-
+#Drupal customizations should come after this line
+RUN echo "ServerName \$(hostname)\n" >> /etc/apache2/apache2.conf
 
 # Install unzip utility and libs needed by zip PHP extension 
 RUN apt-get update && apt-get install -y \
