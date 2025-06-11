@@ -902,6 +902,3 @@ if (getenv('ENV_TYPE') == 'development') {
   $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 }
 
-
-#Set Path to private files folder (used by backup_migrate)
-$settings['file_private_path'] = getenv('PRIVATEFILES');

@@ -2,6 +2,8 @@
 
 echo Warning. This script will wipe the dev folder and reset it
 
+docker compose down dev
+
 rm -Rf dev
 mkdir -p dev/data
 
