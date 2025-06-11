@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=1.0.4
+VERSION=1.0.5
 
 
 #Set default values if none supplied
@@ -65,6 +65,7 @@ then
             --site-name=$SITENAME \
             --account-name=$ADMINUSER \
             --account-pass=$ADMINPASSWORD \
+            --existing-config \
             minimal \
             install_configure_form.enable_update_status_emails=NULL \
             --yes
