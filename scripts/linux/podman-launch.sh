@@ -189,14 +189,13 @@ create_container() {
 create_service() {
     podman generate systemd --new --name "$CONTAINER_NAME" > "/etc/systemd/system/$CONTAINER_NAME.service"
     systemctl enable "$CONTAINER_NAME.service"
-    systemctl start "$CONTAINER_NAME.service"
     
     # Check if the systemd service was created and started successfully
     if [ $? -ne 0 ]; then
-        echo "Failed to start systemd service for container: $CONTAINER_NAME"
+        echo "Failed to create systemd service for container: $CONTAINER_NAME"
         exit 5
     fi
-    echo "Systemd service for container '$CONTAINER_NAME' created and started successfully."
+    echo "Systemd service for container '$CONTAINER_NAME' created successfully."
     exit 0
 }
 
