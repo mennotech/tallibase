@@ -14,12 +14,13 @@ show_help() {
     echo "Options:"
     echo "  -p, --local-port        Local port to use when creating new pod (default: 8080)"
     echo "  -d, --root-domain       Root domain (default: tallibase.io)"
-    echo "  -f, --root-folder       Root folder for the site data (default: /root/tallibase)"
+    echo "  -f, --root-folder       Root folder for the site data (default: ~/tallibase)"
     echo "  -r, --rev-tag           Revision tag for the container image (default: latest)"
     echo "  -i, --image             Container image to use (default: docker.io/mennotech/tallibase)"
     echo "  -l, --localhost         Use localhost as the root domain (default: false)"
     echo "  -h, --help              Show this help message and exit"
     echo "  -D, --delete-data       Delete all data associated with the site (default: false)"
+    echo "  -P, --pull-image        Pull the latest image before creating the container (default: false)"
     echo ""
 }
 
@@ -29,10 +30,11 @@ ACTION=""
 ROOT_DOMAIN="tallibase.io"
 LOCAL_PORT="8080"
 REV_TAG="latest"
-ROOT_FOLDER="/root/tallibase"
+ROOT_FOLDER="${HOME}/tallibase"
 UPDATE_IMAGE=false
 IMAGE="docker.io/mennotech/tallibase"
 DELETE_DATA=false
+UPDATE_IMAGE=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -79,6 +81,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         -D|--delete-data)
             DELETE_DATA=true
+            shift
+            ;;
+        -P|--pull-image)
+            UPDATE_IMAGE=true
             shift
             ;;
         -h|--help)
@@ -156,7 +162,14 @@ check_port_available() {
 
 # Function create pod and container
 create_container() {
-    echo "Creating container '$CONTAINER_NAME' in pod '$POD_NAME'..."    
+    # Check if the container already exists
+    if podman container exists "$CONTAINER_NAME"; then
+        echo "Container '$CONTAINER_NAME' already exists. Select update if you want to update the container."
+        exit 0
+    fi
+
+    echo "Creating container '$CONTAINER_NAME' in pod '$POD_NAME'..."
+    
     # Check if the root folder exists, if not create it
     if [ ! -d "$ROOT_FOLDER/$SITE_NAME" ]; then
         echo "Creating root folder: $ROOT_FOLDER/$SITE_NAME"
@@ -187,6 +200,12 @@ create_container() {
 
 # Function to create systemd service and start service
 create_service() {
+    # Check if running with permission to create service
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "This script must be run as root to create a systemd service."
+        exit 1
+    fi
+
     podman generate systemd --new --name "$CONTAINER_NAME" > "/etc/systemd/system/$CONTAINER_NAME.service"
     systemctl enable "$CONTAINER_NAME.service"
     
@@ -275,6 +294,12 @@ delete_data() {
 
 # Function to delete systemd service file
 delete_service() {
+    # Check if running with permission to delete service
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "This script must be run as root to delete a systemd service."
+        exit 1
+    fi
+
     echo "Removing systemd service for container '$CONTAINER_NAME'..."
     if [ -f "/etc/systemd/system/$CONTAINER_NAME.service" ]; then
         if systemctl is-active --quiet "$CONTAINER_NAME.service"; then
@@ -315,7 +340,9 @@ create_pod() {
 
 case "$ACTION" in
     "create")
-        pull_image
+        if [ $UPDATE_IMAGE = true ]; then
+            pull_image
+        fi
         create_pod
         create_container
         create_service
