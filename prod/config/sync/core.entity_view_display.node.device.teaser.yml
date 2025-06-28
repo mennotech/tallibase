@@ -8,9 +8,12 @@ dependencies:
     - field.field.node.device.field_device_class
     - field.field.node.device.field_device_model
     - field.field.node.device.field_device_status
+    - field.field.node.device.field_device_workloads
     - field.field.node.device.field_manufacturer
+    - field.field.node.device.field_parent_organization
     - field.field.node.device.field_serial_number
     - field.field.node.device.field_short_description
+    - field.field.node.device.field_virtual_device
     - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
@@ -37,8 +40,11 @@ hidden:
   field_device_class: true
   field_device_model: true
   field_device_status: true
+  field_device_workloads: true
   field_manufacturer: true
+  field_parent_organization: true
   field_serial_number: true
   field_short_description: true
+  field_virtual_device: true
   field_warranty_expiry: true
   langcode: true

@@ -1,0 +1,23 @@
+uuid: 2ca22cc3-047c-459f-bf43-1a363003183b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_virtual_device
+    - node.type.device
+id: node.device.field_virtual_device
+field_name: field_virtual_device
+entity_type: node
+bundle: device
+label: 'Virtual Device'
+description: 'Is this a virtual device running within another device?'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

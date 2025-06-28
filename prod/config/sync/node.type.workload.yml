@@ -1,0 +1,11 @@
+uuid: 16a9f06d-a05a-4989-b649-e4279a7e52fc
+langcode: en
+status: true
+dependencies: {  }
+name: Workload
+type: workload
+description: 'A set of services or tasks carried out by a device'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

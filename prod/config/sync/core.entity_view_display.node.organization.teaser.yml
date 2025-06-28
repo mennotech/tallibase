@@ -1,10 +1,11 @@
-uuid: 59f0fe05-1bee-4c49-93d7-5711fc41ee1e
+uuid: 751d958b-9a25-4553-869c-e26c1b6c6ba8
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - node.type.code
+    - field.field.node.organization.field_parent_organization
+    - node.type.organization
   module:
     - field_layout
     - layout_discovery
@@ -14,9 +15,9 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.code.teaser
+id: node.organization.teaser
 targetEntityType: node
-bundle: code
+bundle: organization
 mode: teaser
 content:
   links:
@@ -25,4 +26,5 @@ content:
     weight: 100
     region: content
 hidden:
+  field_parent_organization: true
   langcode: true

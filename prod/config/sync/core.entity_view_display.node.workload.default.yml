@@ -1,10 +1,10 @@
-uuid: 59f0fe05-1bee-4c49-93d7-5711fc41ee1e
+uuid: 34ace5bd-0af3-4631-bd3a-95e634b04188
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
-    - node.type.code
+    - field.field.node.workload.field_configuration
+    - node.type.workload
   module:
     - field_layout
     - layout_discovery
@@ -14,11 +14,19 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.code.teaser
+id: node.workload.default
 targetEntityType: node
-bundle: code
-mode: teaser
+bundle: workload
+mode: default
 content:
+  field_configuration:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }

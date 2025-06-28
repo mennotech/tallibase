@@ -1,0 +1,19 @@
+uuid: 533aa792-92a8-48a8-810b-97bf845441c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_configuration_text
+field_name: field_configuration_text
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

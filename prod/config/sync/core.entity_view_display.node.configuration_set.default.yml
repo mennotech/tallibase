@@ -1,0 +1,53 @@
+uuid: abf64598-0dc4-4e72-bdea-e335ccc446ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.configuration_set.field_configuration_language
+    - field.field.node.configuration_set.field_configuration_text
+    - field.field.node.configuration_set.field_filename
+    - node.type.configuration_set
+  module:
+    - field_layout
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.configuration_set.default
+targetEntityType: node
+bundle: configuration_set
+mode: default
+content:
+  field_configuration_language:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_configuration_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_filename:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

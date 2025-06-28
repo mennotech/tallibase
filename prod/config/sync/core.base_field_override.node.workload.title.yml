@@ -1,0 +1,18 @@
+uuid: 1012be7c-92e7-45a6-8cb5-a5de06300d60
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.workload
+id: node.workload.title
+field_name: title
+entity_type: node
+bundle: workload
+label: 'Display Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

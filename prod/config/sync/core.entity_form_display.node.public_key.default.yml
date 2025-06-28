@@ -1,15 +1,11 @@
-uuid: 42ead4df-bce8-41d0-894e-bec5ca898832
+uuid: 0a776e87-348f-4c03-962a-44e60b98347e
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.person.field_end_date
-    - field.field.node.person.field_first_name
-    - field.field.node.person.field_job_title
-    - field.field.node.person.field_last_name
-    - field.field.node.person.field_parent_organization
-    - field.field.node.person.field_start_date
-    - node.type.person
+    - field.field.node.public_key.field_key_type
+    - field.field.node.public_key.field_public_key_value
+    - node.type.public_key
   module:
     - field_layout
     - layout_discovery
@@ -18,9 +14,9 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.person.default
+id: node.public_key.default
 targetEntityType: node
-bundle: person
+bundle: public_key
 mode: default
 content:
   created:
@@ -29,51 +25,19 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_end_date:
-    type: datetime_timestamp
-    weight: 125
+  field_key_type:
+    type: options_select
+    weight: 121
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_first_name:
+  field_public_key_value:
     type: string_textfield
     weight: 122
     region: content
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  field_job_title:
-    type: string_textfield
-    weight: 123
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_last_name:
-    type: string_textfield
-    weight: 121
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_parent_organization:
-    type: entity_reference_autocomplete
-    weight: 121
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_start_date:
-    type: datetime_timestamp
-    weight: 124
-    region: content
-    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

@@ -1,0 +1,11 @@
+uuid: ae46007e-5a22-47dc-9675-4baaa672f4a6
+langcode: en
+status: true
+dependencies: {  }
+name: 'Configuration Set'
+type: configuration_set
+description: 'A set of configurations tied to a device, workload or code stored as text.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

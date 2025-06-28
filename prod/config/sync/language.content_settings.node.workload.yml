@@ -1,0 +1,11 @@
+uuid: e07a896c-05d5-4037-a0b2-cc57fc46a006
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.workload
+id: node.workload
+target_entity_type_id: node
+target_bundle: workload
+default_langcode: site_default
+language_alterable: false

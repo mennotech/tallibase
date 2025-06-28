@@ -1,0 +1,19 @@
+uuid: e4afeedc-2ceb-4ace-b202-1e78f37d15da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_public_key_value
+    - node.type.public_key
+id: node.public_key.field_public_key_value
+field_name: field_public_key_value
+entity_type: node
+bundle: public_key
+label: 'Public Key Value'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,15 +1,10 @@
-uuid: 42ead4df-bce8-41d0-894e-bec5ca898832
+uuid: 60d6d89c-7173-40b2-a084-bafc8fe275e6
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.person.field_end_date
-    - field.field.node.person.field_first_name
-    - field.field.node.person.field_job_title
-    - field.field.node.person.field_last_name
-    - field.field.node.person.field_parent_organization
-    - field.field.node.person.field_start_date
-    - node.type.person
+    - field.field.node.workload.field_configuration
+    - node.type.workload
   module:
     - field_layout
     - layout_discovery
@@ -18,9 +13,9 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.person.default
+id: node.workload.default
 targetEntityType: node
-bundle: person
+bundle: workload
 mode: default
 content:
   created:
@@ -29,37 +24,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_end_date:
-    type: datetime_timestamp
-    weight: 125
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_first_name:
-    type: string_textfield
-    weight: 122
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_job_title:
-    type: string_textfield
-    weight: 123
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_last_name:
-    type: string_textfield
-    weight: 121
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_parent_organization:
+  field_configuration:
     type: entity_reference_autocomplete
     weight: 121
     region: content
@@ -68,12 +33,6 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  field_start_date:
-    type: datetime_timestamp
-    weight: 124
-    region: content
-    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

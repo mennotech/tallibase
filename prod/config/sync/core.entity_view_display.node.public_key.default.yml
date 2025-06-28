@@ -1,0 +1,45 @@
+uuid: ec6bc0d4-42ef-40f8-8ed5-7231a42104e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.public_key.field_key_type
+    - field.field.node.public_key.field_public_key_value
+    - node.type.public_key
+  module:
+    - field_layout
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.public_key.default
+targetEntityType: node
+bundle: public_key
+mode: default
+content:
+  field_key_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_public_key_value:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

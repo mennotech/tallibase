@@ -1,0 +1,18 @@
+uuid: 9694706c-be19-4b30-ae3c-b5414ef19705
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.configuration_set
+id: node.configuration_set.title
+field_name: title
+entity_type: node
+bundle: configuration_set
+label: 'Display Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: 59666fee-14c0-40ca-a573-d795b94fd5fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.public_key
+id: node.public_key
+target_entity_type_id: node
+target_bundle: public_key
+default_langcode: site_default
+language_alterable: false

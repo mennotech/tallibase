@@ -1,0 +1,11 @@
+uuid: 223aed21-968c-4ad6-91e6-b3d92bba94e8
+langcode: en
+status: true
+dependencies: {  }
+name: 'Public Key'
+type: public_key
+description: 'A public key used to secure connections and communications between devices'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

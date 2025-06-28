@@ -1,0 +1,19 @@
+uuid: 97c38bf1-3adb-4cfb-b384-ef54dcb4f179
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_configuration_text
+    - node.type.configuration_set
+id: node.configuration_set.field_configuration_text
+field_name: field_configuration_text
+entity_type: node
+bundle: configuration_set
+label: 'Configuration Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -7,9 +7,12 @@ dependencies:
     - field.field.node.device.field_device_class
     - field.field.node.device.field_device_model
     - field.field.node.device.field_device_status
+    - field.field.node.device.field_device_workloads
     - field.field.node.device.field_manufacturer
+    - field.field.node.device.field_parent_organization
     - field.field.node.device.field_serial_number
     - field.field.node.device.field_short_description
+    - field.field.node.device.field_virtual_device
     - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
@@ -69,6 +72,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_device_workloads:
+    type: entity_reference_autocomplete
+    weight: 133
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_manufacturer:
     type: inline_entity_form_complex
     weight: 127
@@ -87,6 +100,16 @@ content:
       revision: true
       removed_reference: keep
     third_party_settings: {  }
+  field_parent_organization:
+    type: entity_reference_autocomplete
+    weight: 121
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_serial_number:
     type: string_textfield
     weight: 121
@@ -102,6 +125,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_virtual_device:
+    type: boolean_checkbox
+    weight: 134
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_warranty_expiry:
     type: datetime_default

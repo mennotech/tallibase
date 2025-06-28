@@ -1,0 +1,18 @@
+uuid: 8fcde359-2019-4b6f-b75b-880d414f2e18
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.public_key
+id: node.public_key.title
+field_name: title
+entity_type: node
+bundle: public_key
+label: 'Display Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

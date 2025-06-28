@@ -7,9 +7,12 @@ dependencies:
     - field.field.node.device.field_device_class
     - field.field.node.device.field_device_model
     - field.field.node.device.field_device_status
+    - field.field.node.device.field_device_workloads
     - field.field.node.device.field_manufacturer
+    - field.field.node.device.field_parent_organization
     - field.field.node.device.field_serial_number
     - field.field.node.device.field_short_description
+    - field.field.node.device.field_virtual_device
     - field.field.node.device.field_warranty_expiry
     - node.type.device
   module:
@@ -60,6 +63,14 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
+  field_device_workloads:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 113
+    region: content
   field_manufacturer:
     type: entity_reference_label
     label: above
@@ -67,6 +78,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 107
+    region: content
+  field_parent_organization:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
     region: content
   field_serial_number:
     type: string
@@ -83,6 +102,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 110
+    region: content
+  field_virtual_device:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 114
     region: content
   field_warranty_expiry:
     type: datetime_default

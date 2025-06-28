@@ -1,0 +1,23 @@
+uuid: 7244ac7d-e0f6-4e45-937c-b7ec6a2a4ac0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_key_type
+    - node.type.public_key
+  module:
+    - options
+id: node.public_key.field_key_type
+field_name: field_key_type
+entity_type: node
+bundle: public_key
+label: 'Key Type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: rsa
+default_value_callback: ''
+settings: {  }
+field_type: list_string

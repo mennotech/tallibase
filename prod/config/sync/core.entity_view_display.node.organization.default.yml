@@ -1,9 +1,10 @@
-uuid: 454dd4f2-74ab-4b70-bb0d-73484a8b98ff
+uuid: c8db04c9-4060-4114-878e-98b307b5cd31
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.code
+    - field.field.node.organization.field_parent_organization
+    - node.type.organization
   module:
     - field_layout
     - layout_discovery
@@ -13,11 +14,19 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.code.default
+id: node.organization.default
 targetEntityType: node
-bundle: code
+bundle: organization
 mode: default
 content:
+  field_parent_organization:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }

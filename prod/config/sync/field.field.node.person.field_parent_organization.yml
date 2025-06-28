@@ -1,0 +1,29 @@
+uuid: cd506ea0-d6f6-48ea-9ef0-eb79aca932c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_parent_organization
+    - node.type.organization
+    - node.type.person
+id: node.person.field_parent_organization
+field_name: field_parent_organization
+entity_type: node
+bundle: person
+label: 'Parent Organization'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

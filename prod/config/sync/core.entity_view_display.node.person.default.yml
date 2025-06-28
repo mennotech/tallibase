@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.person.field_first_name
     - field.field.node.person.field_job_title
     - field.field.node.person.field_last_name
+    - field.field.node.person.field_parent_organization
     - field.field.node.person.field_start_date
     - node.type.person
   module:
@@ -63,6 +64,14 @@ content:
     label: above
     settings:
       link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_parent_organization:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
     weight: 101
     region: content

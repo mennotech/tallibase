@@ -1,0 +1,29 @@
+uuid: 244a0e2e-5be2-4fda-aa6e-d76351a7aaf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_configuration
+    - node.type.configuration_set
+    - node.type.workload
+id: node.workload.field_configuration
+field_name: field_configuration
+entity_type: node
+bundle: workload
+label: Configuration
+description: 'Please select any related configuration sets'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      configuration_set: configuration_set
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

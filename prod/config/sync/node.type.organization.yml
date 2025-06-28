@@ -1,0 +1,11 @@
+uuid: 401b47d2-8f2b-41a9-99c1-f4898123df46
+langcode: en
+status: true
+dependencies: {  }
+name: Organization
+type: organization
+description: 'An organization is a group of people and devices that are connected.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

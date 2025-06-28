@@ -1,0 +1,19 @@
+uuid: 198bc9fa-b98e-4d3e-bdd0-a5256f558b02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_filename
+    - node.type.configuration_set
+id: node.configuration_set.field_filename
+field_name: field_filename
+entity_type: node
+bundle: configuration_set
+label: Filename
+description: 'Enter an option filename associated with this configuration set'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,15 +1,12 @@
-uuid: 42ead4df-bce8-41d0-894e-bec5ca898832
+uuid: c35c7d6e-c88b-4d9b-adfb-5e945ab953d7
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.person.field_end_date
-    - field.field.node.person.field_first_name
-    - field.field.node.person.field_job_title
-    - field.field.node.person.field_last_name
-    - field.field.node.person.field_parent_organization
-    - field.field.node.person.field_start_date
-    - node.type.person
+    - field.field.node.configuration_set.field_configuration_language
+    - field.field.node.configuration_set.field_configuration_text
+    - field.field.node.configuration_set.field_filename
+    - node.type.configuration_set
   module:
     - field_layout
     - layout_discovery
@@ -18,9 +15,9 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.person.default
+id: node.configuration_set.default
 targetEntityType: node
-bundle: person
+bundle: configuration_set
 mode: default
 content:
   created:
@@ -29,51 +26,27 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_end_date:
-    type: datetime_timestamp
-    weight: 125
+  field_configuration_language:
+    type: options_select
+    weight: 121
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_first_name:
-    type: string_textfield
+  field_configuration_text:
+    type: string_textarea
     weight: 122
     region: content
     settings:
-      size: 60
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_job_title:
+  field_filename:
     type: string_textfield
     weight: 123
     region: content
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  field_last_name:
-    type: string_textfield
-    weight: 121
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_parent_organization:
-    type: entity_reference_autocomplete
-    weight: 121
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_start_date:
-    type: datetime_timestamp
-    weight: 124
-    region: content
-    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

@@ -1,0 +1,29 @@
+uuid: d6caf8e0-aee0-485f-a11d-1d8c6c4d694b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_device_workloads
+    - node.type.device
+    - node.type.workload
+id: node.device.field_device_workloads
+field_name: field_device_workloads
+entity_type: node
+bundle: device
+label: 'Device Workloads'
+description: 'Use this field to assign workloads to this device'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      workload: workload
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

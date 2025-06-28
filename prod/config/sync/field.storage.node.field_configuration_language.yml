@@ -1,0 +1,33 @@
+uuid: ad3b303a-61be-4dd3-99b7-8bbc300dee48
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_configuration_language
+field_name: field_configuration_language
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: yaml
+      label: YAML
+    -
+      value: json
+      label: JSON
+    -
+      value: xml
+      label: XML
+    -
+      value: ini
+      label: INI
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

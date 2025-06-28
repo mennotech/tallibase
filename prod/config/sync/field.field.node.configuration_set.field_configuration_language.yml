@@ -1,0 +1,23 @@
+uuid: ed7f4956-7043-4140-9441-913b5fbbc0d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_configuration_language
+    - node.type.configuration_set
+  module:
+    - options
+id: node.configuration_set.field_configuration_language
+field_name: field_configuration_language
+entity_type: node
+bundle: configuration_set
+label: 'Configuration Language'
+description: 'Please choose the language with which your configurations are encoded'
+required: true
+translatable: false
+default_value:
+  -
+    value: yaml
+default_value_callback: ''
+settings: {  }
+field_type: list_string

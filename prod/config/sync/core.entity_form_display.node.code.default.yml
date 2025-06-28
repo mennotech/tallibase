@@ -3,12 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.code.body
     - node.type.code
   module:
     - field_layout
     - layout_discovery
-    - text
 third_party_settings:
   field_layout:
     id: layout_onecol
@@ -19,16 +17,6 @@ targetEntityType: node
 bundle: code
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 121
-    region: content
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-      show_summary: false
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 10

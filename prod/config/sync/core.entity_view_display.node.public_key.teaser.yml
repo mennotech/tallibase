@@ -1,10 +1,12 @@
-uuid: 59f0fe05-1bee-4c49-93d7-5711fc41ee1e
+uuid: 4ccbac97-705f-4d02-a0ea-fbada0f066bb
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - node.type.code
+    - field.field.node.public_key.field_key_type
+    - field.field.node.public_key.field_public_key_value
+    - node.type.public_key
   module:
     - field_layout
     - layout_discovery
@@ -14,9 +16,9 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
-id: node.code.teaser
+id: node.public_key.teaser
 targetEntityType: node
-bundle: code
+bundle: public_key
 mode: teaser
 content:
   links:
@@ -25,4 +27,6 @@ content:
     weight: 100
     region: content
 hidden:
+  field_key_type: true
+  field_public_key_value: true
   langcode: true
